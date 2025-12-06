@@ -1,21 +1,23 @@
-// src/components/FeatureGrid.jsx
 import React from "react";
 import Grid from "@mui/material/Grid";
 import FeatureCard from "./FeatureCard";
 import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
 
 const FeatureGrid = ({
     items = [],
-    cardWidth = 400,
-    cardHeight = 173,
+    cardMaxWidth = 360,   // controls card visual width inside each column
+    cardHeight = 140,
+    spacing = 3,          // controls gap between columns & rows
     containerSx = {},
 }) => {
     return (
         <Grid
             container
-            spacing={4}                   // <-- Equal spacing between cards
+            spacing={spacing}
             sx={{
-                justifyContent: "center",   // <-- Keep grid centered
+                width: "100%",
+                margin: 0,
                 ...containerSx,
             }}
         >
@@ -23,17 +25,24 @@ const FeatureGrid = ({
                 <Grid
                     item
                     key={idx}
-                    size={{ xs: 12, sm: 6, md: 4 }} // <-- MUI v2 syntax
+                    xs={12}
+                    sm={6}
+                    md={4}         // 3 columns at md and up
                     sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: "center",   // centers the inner card container
+                        alignItems: "flex-start",
                     }}
                 >
-                    <FeatureCard
-                        text={text}
-                        width={cardWidth}
-                        height={cardHeight}
-                    />
+                    {/* Wrap card in a Box so card can have maxWidth while filling cell */}
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                        <FeatureCard
+                            text={text}
+                            width="100%"
+                            maxWidth={cardMaxWidth}
+                            height={cardHeight}
+                        />
+                    </Box>
                 </Grid>
             ))}
         </Grid>

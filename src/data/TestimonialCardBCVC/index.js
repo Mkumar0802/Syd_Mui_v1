@@ -1,6 +1,6 @@
 // src/data/TestimonialCardBCVC/index.js
 
-import mitreLogo from "../../assets/icons/arrow_backward.png"; // adjust path if needed
+import mitreLogo from "../../assets/icons/mitre_10.png"; // adjust path if needed
 
 export const testimonialCardBCVC = [
   {

@@ -37,6 +37,44 @@ const theme = createTheme({
       letterSpacing: "0%",
       textAlign: "left",
     },
+     profileName: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 700,
+      fontStyle: "normal",
+      fontSize: "20px",
+      lineHeight: "100%",
+      letterSpacing: "0%",
+      textAlign: "center",
+    },
+
+    profileRole: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontSize: "16px",
+      lineHeight: "100%",
+      letterSpacing: "0%",
+      textAlign: "center",
+    },
+        featureTitle: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 600,           // semibold
+      fontStyle: "normal",
+      fontSize: "20px",
+      lineHeight: "29px",
+      letterSpacing: "0%",
+      textAlign: "left",
+    },
+
+    featureSubtitle: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 400,           // normal body text (use 400 for description)
+      fontStyle: "normal",
+      fontSize: "16px",
+      lineHeight: "24px",
+      letterSpacing: "0%",
+      textAlign: "left",
+    },
   },
 
 //   palette: {

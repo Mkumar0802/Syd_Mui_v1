@@ -14,7 +14,7 @@ export default function FeatureGridCard({
   title,
   body,
   sx = {},
-  height = 254,
+  height = 200,
   bg = "#F2F2F2",
 }) {
   return (

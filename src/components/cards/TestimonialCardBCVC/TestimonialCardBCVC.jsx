@@ -4,11 +4,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
-/**
- * TestimonialCardBCVC
- * - theme contains only font tokens
- * - component sets background, text color and badge color itself
- */
 const TestimonialCardBCVC = ({
   logoSrc,
   quote,
@@ -36,8 +31,7 @@ const TestimonialCardBCVC = ({
         height: norm(height),
         transform: `rotate(${angle}deg)`,
         opacity,
-        // component controls visual colors (NOT the theme)
-        backgroundColor: "#FFFFFF", // card background
+        backgroundColor: "#FFFFFF",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -48,8 +42,8 @@ const TestimonialCardBCVC = ({
         ...sx,
       }}
     >
-      {/* Left: logo area */}
-      {logoSrc && (
+      {/* Logo area — NO FALLBACK ICON */}
+      {logoSrc ? (
         <Box
           sx={{
             flex: "0 0 auto",
@@ -72,51 +66,20 @@ const TestimonialCardBCVC = ({
             }}
           />
         </Box>
-      )}
+      ) : null}
 
-      {/* Quote text: uses typography token from theme (font only). Colour applied here. */}
+      {/* Quote text */}
       <Box sx={{ flex: 1, pr: badgeText ? 5 : 0 }}>
         <Typography
           component="div"
           sx={{
             ...(theme.typography?.testimonialBCVC || {}),
-            color: "#000000", // text colour set by component
+            color: "#000000",
           }}
         >
           &ldquo;{quote}&rdquo;
         </Typography>
       </Box>
-
-      {/* Badge on the right edge — visual styling kept in component */}
-      {badgeText && (
-        <Box
-          sx={{
-            position: "absolute",
-            right: -18,
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            backgroundColor: "#FFC107", // badge colour inside component
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: 1,
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: 700,
-              fontSize: 16,
-              color: "#000000",
-            }}
-          >
-            {badgeText}
-          </Typography>
-        </Box>
-      )}
     </Box>
   );
 };
