@@ -1,6 +1,6 @@
 import ButtonPE from "./components/buttons/ButtonPE";
 import ArrowButton from "./components/buttons/NavigationLR";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 
 import FeatureGridSection from "./components/sectionmodules/FeatureGridSection/FeatureGridSection";
 import { featureItems } from "./data/FeatureGridSection";
@@ -14,6 +14,8 @@ import { testimonialCardBCVC } from "./data/TestimonialCardBCVC";
 import ProfileGrid from "./components/cards/TestimonialCardBCVC/ProfileCard/ProfileGrid.jsx";
 
 import FeatureList from "./components/sectionmodules/FeatureListCard/FeatureList.jsx";
+import AccordionFeatureList from "./components/sectionmodules/AccordionItem/AccordionFeatureList";
+
 
 function App() {
   return (
@@ -100,6 +102,35 @@ function App() {
 
         <FeatureList />
       </Stack>
+      {/* -------------------------------------------------------------- */}
+      {/* 8. ACCORDION FEATURE LIST */}
+      {/* -------------------------------------------------------------- */}
+      <Stack sx={{ mt: 4 }} spacing={4} alignItems="center">
+        <Typography variant="h5">Accordion Item</Typography>
+        
+        <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          mt: 4,
+        }}
+      >
+        <Box
+          sx={{
+            width: { xs: "95%", sm: "90%", md: "1030px" }, // matches your Figma width
+            minHeight: "249px", // only enforce height if required
+          }}
+        >
+          <AccordionFeatureList />
+        </Box>
+      </Box>
+      </Stack>
+
+
+
+
+      {/* -------------------------------------------------------------- */}
     </>
   );
 }
