@@ -13,7 +13,7 @@ import { testimonialCardBCVC } from "./data/TestimonialCardBCVC";
 
 import ProfileGrid from "./components/cards/TestimonialCardBCVC/ProfileCard/ProfileGrid.jsx";
 
-import FeatureList from "./components/sectionmodules/FeatureListCard/FeatureList.jsx";
+// import FeatureList from "./components/sectionmodules/FeatureListCard/FeatureList.jsx";
 
 function App() {
   return (
@@ -95,11 +95,11 @@ function App() {
       {/* -------------------------------------------------------------- */}
       {/* 7. FEATURE LIST SECTION */}
       {/* -------------------------------------------------------------- */}
-      <Stack sx={{ mt: 4 }} spacing={4} alignItems="center">
+      {/* <Stack sx={{ mt: 4 }} spacing={4} alignItems="center">
         <Typography variant="h5">Key Highlights</Typography>
 
         <FeatureList />
-      </Stack>
+      </Stack> */}
     </>
   );
 }
