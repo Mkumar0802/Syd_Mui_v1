@@ -26,9 +26,9 @@ const theme = createTheme({
       fontSize: "14px",
       lineHeight: "20px",
     },
-        // Custom BCVC testimonial font style
+    // Custom BCVC testimonial font style
     testimonialBCVC: {
-     fontFamily:
+      fontFamily:
         '"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif',
       fontWeight: 400,
       fontStyle: "normal",
@@ -37,7 +37,7 @@ const theme = createTheme({
       letterSpacing: "0%",
       textAlign: "left",
     },
-     profileName: {
+    profileName: {
       fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
       fontWeight: 700,
       fontStyle: "normal",
@@ -56,7 +56,7 @@ const theme = createTheme({
       letterSpacing: "0%",
       textAlign: "center",
     },
-        featureTitle: {
+    featureTitle: {
       fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
       fontWeight: 600,           // semibold
       fontStyle: "normal",
@@ -75,13 +75,61 @@ const theme = createTheme({
       letterSpacing: "0%",
       textAlign: "left",
     },
+    /* ---------- New custom nav tokens ---------- */
+
+    // title heading (Microsoft JhengHei UI / Bold / 18px / 22px)
+    navHeading: {
+      fontFamily:
+        `"Microsoft JhengHei UI", "Microsoft JhengHei", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial`,
+      fontWeight: 700,
+      fontStyle: "normal",
+      fontSize: "18px",
+      lineHeight: "22px",
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
+
+    // sublink (Segoe UI / Regular / 16px / 35px)
+    navSublink: {
+      fontFamily:
+        `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif`,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontSize: "16px",
+      lineHeight: "35px",
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
+    // Footer section title / heading
+    footerTitle: {
+      fontFamily:
+        `"Microsoft JhengHei UI", "Microsoft JhengHei", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif`,
+      fontWeight: 700,          // requested
+      fontStyle: "normal",      // "Bold" is represented by fontWeight:700
+      fontSize: "18px",         // requested
+      lineHeight: "22px",       // requested
+      letterSpacing: "0px",     // 0%
+      textTransform: "none",
+    },
+
+    // Footer sublink text
+    footerSublink: {
+      fontFamily:
+        `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif`,
+      fontWeight: 400,          // Regular
+      fontStyle: "normal",
+      fontSize: "16px",
+      lineHeight: "35px",       // requested (large touch-friendly height)
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
   },
 
-//   palette: {
-//     grey: {
-//       100: "#F2F2F2", // your default card bg
-//     },
-//   },
+  //   palette: {
+  //     grey: {
+  //       100: "#F2F2F2", // your default card bg
+  //     },
+  //   },
 
   components: {
     MuiButton: {

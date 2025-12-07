@@ -67,11 +67,11 @@ const ProfileGrid = () => {
           display: "grid",
           gridTemplateColumns,
           gap,
-
+          ml: { xs: 0, sm: 0, md: -0, lg: -0 },
           justifyContent: "center",
           alignItems: "start",
           // responsive offset: no offset on small screens, slight right shift on md+, larger on lg+
-          pl: { xs: 0, sm: 0, md: 6, lg: 12 }, // adds left padding to visually shift row right
+          pl: { xs: 0, sm: 0, md: 6, lg: 24 }, // adds left padding to visually shift row right
         }}
       >
         {secondSection.map((p, index) => (

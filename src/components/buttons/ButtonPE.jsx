@@ -25,39 +25,59 @@ const ButtonPE = ({
   onClick,
   startIcon,
   endIcon,
+  variant = "contained", // NEW
   sx,
   ...props
 }) => {
   const theme = useTheme();
   const sizeStyles = SIZE_STYLES[size] || SIZE_STYLES.medium;
 
+  // --- NEW: custom variants ---
+  const customVariantStyles =
+    variant === "outlinedWhite"
+      ? {
+          backgroundColor: "transparent",
+          color: "#FFFFFF",
+          border: "1px solid rgba(255,255,255,0.6)",
+          borderRadius: 0,
+          boxShadow: "none",
+          "&:hover": {
+            backgroundColor: "rgba(255,255,255,0.08)",
+            border: "1px solid #FFFFFF",
+          },
+        }
+      : {
+          // default purple button
+          backgroundColor: "#6533FF",
+          borderRadius: 0,
+          boxShadow: "none",
+          color: "#FFFFFF",
+          "&:hover": {
+            backgroundColor: "#5b2ee6",
+            boxShadow: "none",
+          },
+        };
+
   return (
     <Button
-      variant="contained"
       onClick={onClick}
       startIcon={startIcon}
       endIcon={endIcon}
       sx={{
-        // Apply theme button typography
+        // typography
         fontFamily: theme.typography.fontFamily,
         fontWeight: theme.typography.button.fontWeight,
         textTransform: theme.typography.button.textTransform,
         lineHeight: theme.typography.button.lineHeight,
         letterSpacing: theme.typography.button.letterSpacing,
 
-        // Dynamic size
+        // size dynamic
         fontSize: sizeStyles.fontSize,
         padding: sizeStyles.padding,
         gap: sizeStyles.gap,
 
-        // Colors
-        backgroundColor: "#6533FF",
-        borderRadius: 0,
-        boxShadow: "none",
-        "&:hover": {
-          backgroundColor: "#5b2ee6",
-          boxShadow: "none",
-        },
+        // variant styles applied here
+        ...customVariantStyles,
 
         ...sx,
       }}

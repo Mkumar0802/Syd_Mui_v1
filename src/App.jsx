@@ -21,6 +21,8 @@ import PFHGrid from "./components/cards/PFHCard/PFHGrid"; // default import
 import { PFHPeople } from "./data/PFHCard";
 import CSGrid from "./components/cards/CSCard/CSGrid";
 import CSItems from "./data/CSCard";
+import Header from "./layout/Header.jsx";
+import Footer from "./layout/Footer.jsx";
 
 
 
@@ -155,6 +157,15 @@ function App() {
 
         <CSGrid title="Customer Success Stories" items={CSItems} containerWidth="lg" />
       </Stack>
+      <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
+        <Typography variant="h5">Header</Typography>
+        <Header />
+      </Stack >
+      <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
+        <Typography variant="h5">Footer</Typography>
+        <Footer />
+      </Stack >
+
     </>
   );
 }
