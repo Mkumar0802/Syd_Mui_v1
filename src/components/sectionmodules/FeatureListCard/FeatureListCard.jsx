@@ -1,7 +1,7 @@
 // FeatureListCard.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import FeatureIcon from "./FeatureIcon";
+import FeatureIcon from "../../buttons/FeatureIcon";
 import { Box } from "@mui/material";
 
 const FeatureListCard = React.memo(function FeatureListCard({

@@ -15,6 +15,13 @@ import ProfileGrid from "./components/cards/TestimonialCardBCVC/ProfileCard/Prof
 
 import FeatureList from "./components/sectionmodules/FeatureListCard/FeatureList.jsx";
 import AccordionFeatureList from "./components/sectionmodules/AccordionItem/AccordionFeatureList";
+import FHGrid from "./components/cards/FHCard/FHGrid.jsx";
+import FHCards from "./data/FHCard";
+import PFHGrid from "./components/cards/PFHCard/PFHGrid"; // default import
+import { PFHPeople } from "./data/PFHCard";
+import CSGrid from "./components/cards/CSCard/CSGrid";
+import CSItems from "./data/CSCard";
+
 
 
 function App() {
@@ -107,30 +114,47 @@ function App() {
       {/* -------------------------------------------------------------- */}
       <Stack sx={{ mt: 4 }} spacing={4} alignItems="center">
         <Typography variant="h5">Accordion Item</Typography>
-        
-        <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          mt: 4,
-        }}
-      >
+
         <Box
           sx={{
-            width: { xs: "95%", sm: "90%", md: "1030px" }, // matches your Figma width
-            minHeight: "249px", // only enforce height if required
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            mt: 4,
           }}
         >
-          <AccordionFeatureList />
+          <Box
+            sx={{
+              width: { xs: "95%", sm: "90%", md: "1030px" }, // matches your Figma width
+              minHeight: "249px", // only enforce height if required
+            }}
+          >
+            <AccordionFeatureList />
+          </Box>
         </Box>
-      </Box>
       </Stack>
-
-
-
-
       {/* -------------------------------------------------------------- */}
+      {/* 9. FH CARD GRID */}
+      {/* -------------------------------------------------------------- */}
+      <Stack sx={{ mt: 4 }} spacing={4} alignItems="center">
+        <Typography variant="h5">FH Card Grid</Typography>
+
+        <FHGrid items={FHCards} containerWidth="lg" />
+      </Stack>
+      {/* -------------------------------------------------------------- */}
+      {/* 10. PFH CARD GRID */}
+      {/* -------------------------------------------------------------- */}
+      <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
+        <PFHGrid title="Our Leadership" items={PFHPeople} containerWidth="xl" />
+      </Stack>
+      {/* -------------------------------------------------------------- */}
+      {/* 11. CS CARD GRID */}
+      {/* -------------------------------------------------------------- */}
+      <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
+        <Typography variant="h5">CS Card Grid</Typography>
+
+        <CSGrid title="Customer Success Stories" items={CSItems} containerWidth="lg" />
+      </Stack>
     </>
   );
 }
