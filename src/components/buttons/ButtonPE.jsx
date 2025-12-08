@@ -25,38 +25,47 @@ const ButtonPE = ({
   onClick,
   startIcon,
   endIcon,
-  variant = "contained", // NEW
+  variant = "contained",
   sx,
   ...props
 }) => {
   const theme = useTheme();
   const sizeStyles = SIZE_STYLES[size] || SIZE_STYLES.medium;
 
-  // --- NEW: custom variants ---
+  // STATIC COLOR + HOVER COLOR LOGIC
+  const defaultStaticColor = "#6533FF";
+  const hoverColor = "#00D0FF";
+
   const customVariantStyles =
     variant === "outlinedWhite"
       ? {
-          backgroundColor: "transparent",
-          color: "#FFFFFF",
-          border: "1px solid rgba(255,255,255,0.6)",
-          borderRadius: 0,
-          boxShadow: "none",
-          "&:hover": {
-            backgroundColor: "rgba(255,255,255,0.08)",
-            border: "1px solid #FFFFFF",
-          },
-        }
+        backgroundColor: "transparent",
+        color: "#FFFFFF",
+        border: "1px solid rgba(255,255,255,0.6)",
+        borderRadius: 0,
+        boxShadow: "none",
+        "&:hover": {
+          backgroundColor: "rgba(255,255,255,0.08)",
+          border: "1px solid #FFFFFF",
+        },
+      }
       : {
-          // default purple button
-          backgroundColor: "#6533FF",
-          borderRadius: 0,
+        backgroundColor: defaultStaticColor,
+        color: "#FFFFFF",
+        borderRadius: 0,
+        boxShadow: "none",
+        transition: "background-color 0.25s ease",
+
+        "&:hover": {
+          backgroundColor: hoverColor,
           boxShadow: "none",
-          color: "#FFFFFF",
-          "&:hover": {
-            backgroundColor: "#5b2ee6",
-            boxShadow: "none",
-          },
-        };
+        },
+
+        // OPTIONAL: keep click active style same as static color
+        "&:active": {
+          backgroundColor: defaultStaticColor,
+        },
+      };
 
   return (
     <Button
@@ -64,21 +73,17 @@ const ButtonPE = ({
       startIcon={startIcon}
       endIcon={endIcon}
       sx={{
-        // typography
         fontFamily: theme.typography.fontFamily,
         fontWeight: theme.typography.button.fontWeight,
         textTransform: theme.typography.button.textTransform,
         lineHeight: theme.typography.button.lineHeight,
         letterSpacing: theme.typography.button.letterSpacing,
 
-        // size dynamic
         fontSize: sizeStyles.fontSize,
         padding: sizeStyles.padding,
         gap: sizeStyles.gap,
 
-        // variant styles applied here
         ...customVariantStyles,
-
         ...sx,
       }}
       {...props}

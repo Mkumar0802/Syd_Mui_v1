@@ -123,6 +123,34 @@ const theme = createTheme({
       letterSpacing: "0px",
       textTransform: "none",
     },
+    title32: {
+      fontFamily: `"Microsoft JhengHei UI", "Microsoft JhengHei", "Segoe UI", sans-serif`,
+      fontWeight: 700,
+      fontStyle: "normal",
+      fontSize: "32px",
+      lineHeight: "100%",
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
+    bodyContent20: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontSize: "20px",
+      lineHeight: "29px",
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
+    testimonialQuote32: {
+      fontFamily: `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+      fontWeight: 600,
+      fontStyle: "normal",
+      fontSize: "32px",
+      lineHeight: "100%",
+      letterSpacing: "0px",
+      textTransform: "none",
+    },
+
   },
 
   //   palette: {

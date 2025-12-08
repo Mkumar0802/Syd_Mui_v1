@@ -63,9 +63,17 @@ export default function CSCard({
                     {title}
                 </Typography>
 
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2 }}>
+                <Typography
+                    variant="body2"
+                    sx={{
+                        color: "#000000",
+                        lineHeight: 1.8,
+                        mb: 2,
+                    }}
+                >
                     {description}
                 </Typography>
+
 
                 {/* CTA area at bottom-left, reserved space keeps alignment consistent */}
                 <Box sx={{ mt: "auto", pt: 1 }}>

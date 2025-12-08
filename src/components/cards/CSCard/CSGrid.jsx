@@ -1,32 +1,55 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import CSCard from "./CSCard";
 
-/**
- * CSGrid - responsive 3-up grid matching FHGrid pattern
- * Uses the same sizing/alignment syntax as your FHGrid example:
- *   size={{ xs: 12, sm: 6, md: 4 }}
- *
- * Note: `size` prop syntax is MUI v6. If you're using MUI v5, replace `size` with xs/sm/md props.
- */
 export default function CSGrid({ items = [], title, containerWidth = "lg" }) {
     return (
-        <Box component="section" sx={{ width: "100%", py: 4 }}>
-            <Container maxWidth={containerWidth}>
+        <Box component="section" sx={{ width: "100%", overflow: "hidden" }}>
+            <Container
+                maxWidth={containerWidth}
+                disableGutters
+                sx={{ m: 0, p: 0 }}
+            >
                 {title && (
-                    <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            fontWeight: 700,
+                            mb: 2,
+                            mt: 0,
+                            px: 0,
+                        }}
+                    >
                         {title}
                     </Typography>
                 )}
 
-                <Grid container spacing={3} alignItems="stretch">
+                {/* HORIZONTAL SCROLLING TRACK */}
+                <Box
+                    sx={{
+                        display: "flex",
+                        gap: 3,
+                        overflowX: "auto",
+                        scrollSnapType: "x mandatory",
+                        WebkitOverflowScrolling: "touch",
+                        pb: 2,
+
+                        "&::-webkit-scrollbar": { display: "none" }, // hide scrollbar
+                    }}
+                >
                     {items.map((it) => (
-                        <Grid
+                        <Box
                             key={it.id}
-                            item
-                            size={{ xs: 12, sm: 6, md: 4 }}   // <-- same pattern as your FHGrid example
-                            sx={{ display: "flex" }}
+                            sx={{
+                                flex: "0 0 calc((100% / 3.2))",  
+                                /* 
+                                   3.2 = 3 full cards + 0.2 of the next card
+                                   (0.2 = 20% preview card)
+                                */
+                                scrollSnapAlign: "start",
+                                display: "flex",
+                            }}
                         >
                             <CSCard
                                 image={it.image}
@@ -34,11 +57,11 @@ export default function CSGrid({ items = [], title, containerWidth = "lg" }) {
                                 description={it.description}
                                 ctaLabel={it.ctaLabel}
                                 onCta={it.onCta}
-                                sx={{ flexGrow: 1 }}
+                                sx={{ width: "100%" }}
                             />
-                        </Grid>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
             </Container>
         </Box>
     );
