@@ -13,7 +13,7 @@ export default function PartnerTestimonialSection({
     onCta = () => { },
 }) {
     return (
-        <SXContainer py={{ xs: 6, md: 10 }}>
+        <SXContainer pt={0} pb={{ xs: 6, md: 10 }}>
             <Box
                 sx={{
                     width: "100%",

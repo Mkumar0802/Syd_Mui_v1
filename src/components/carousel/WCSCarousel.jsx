@@ -92,7 +92,7 @@ export default function WCSCarousel({
   const slideWidthPct = `${100 / visibleCount}%`;
 
   return (
-    <Box component="section" sx={{ width: "100%", py: { xs: 4, md: 6 } }}>
+    <Box component="section" sx={{ width: "100%", pt: 0, pb: { xs: 4, md: 6, mt: "0 !important" } }}>
       <Container maxWidth={containerWidth} disableGutters>
         {/* HEADER */}
         <Box sx={{ mb: 3 }}>

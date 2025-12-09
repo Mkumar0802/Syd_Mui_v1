@@ -10,4 +10,13 @@ export default defineConfig({
       },
     }),
   ],
+
+  // Add this section to fix TTF/OTF font loading
+  server: {
+    mimeTypes: {
+      "application/font-ttf": ["ttf"],
+      "application/font-otf": ["otf"],
+      "application/font-sfnt": ["ttf", "otf"],
+    },
+  },
 })

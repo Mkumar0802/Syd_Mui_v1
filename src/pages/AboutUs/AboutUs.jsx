@@ -23,7 +23,7 @@ export default function AboutUs({
             <HeroSection
                 background={background}
                 title={title}
-             
+
                 layout={{ width: 1451, height: 640, top: 75, left: -11 }}
                 align="left"
                 buttons={[]} // intentionally no hero buttons

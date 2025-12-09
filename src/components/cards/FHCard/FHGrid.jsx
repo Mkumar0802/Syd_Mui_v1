@@ -2,14 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Box, Container } from "@mui/material";
 import FHCard from "./FHCard";
+import SXContainer from "../../../layout/SXContainer";
+import { Typography } from "@mui/material";
 
 /**
  * FHGrid - 3-up responsive grid aligned like FeatureGridSection
  */
-export default function FHGrid({ items, containerWidth = "lg" }) {
+export default function FHGrid({ items,  }) {
   return (
     <Box component="section" sx={{ width: "100%", py: 4 }}>
-      <Container maxWidth={containerWidth}>
+       <SXContainer>
+                
         <Grid
           container
           spacing={3}
@@ -36,7 +39,8 @@ export default function FHGrid({ items, containerWidth = "lg" }) {
             </Grid>
           ))}
         </Grid>
-      </Container>
+        </SXContainer>
+  
     </Box>
   );
 }

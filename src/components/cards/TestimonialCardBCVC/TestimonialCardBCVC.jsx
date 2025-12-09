@@ -2,62 +2,56 @@ import React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
 
 const TestimonialCardBCVC = ({
   logoSrc,
   quote,
-  badgeText,
   company,
-  width = 820,
-  height = 283,
+  width = { xs: "100%", sm: "90%", md: "820px", lg: "820px" },
+  height = { xs: "auto", md: "283px" },
   angle = 0,
   opacity = 1,
-  top,
-  left,
   sx = {},
 }) => {
-  const theme = useTheme();
-  const norm = (v) => (typeof v === "number" ? `${v}px` : v);
-  const positioned = top !== undefined || left !== undefined ? "absolute" : "relative";
-
   return (
     <Box
       sx={{
-        position: positioned,
-        top: top !== undefined ? norm(top) : undefined,
-        left: left !== undefined ? norm(left) : undefined,
-        width: norm(width),
-        height: norm(height),
+        width,
+        height,
+        maxWidth: "820px",                  // prevents stretching above design spec
         transform: `rotate(${angle}deg)`,
         opacity,
         backgroundColor: "#FFFFFF",
         display: "flex",
-        alignItems: "center",
+        flexDirection: { xs: "column", sm: "row" },
+        alignItems: { xs: "center", sm: "center" },
         justifyContent: "flex-start",
-        gap: 4,
-        px: 4,
+        gap: { xs: 2, sm: 4 },
+        px: { xs: 2, sm: 4 },
+        py: { xs: 3, md: 0 },
+        mx: "auto",
         boxSizing: "border-box",
-        boxShadow: "none",
+        overflow: "hidden",
         ...sx,
       }}
     >
-      {/* Logo area — NO FALLBACK ICON */}
-      {logoSrc ? (
+      {/* Logo */}
+      {logoSrc && (
         <Box
           sx={{
-            flex: "0 0 auto",
+            flexShrink: 0,
+            width: { xs: 80, sm: 100, md: 140 },
+            height: { xs: 35, sm: 45, md: 60 },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: 140,
-            height: 60,
+            mb: { xs: 2, sm: 0 },
           }}
         >
           <Box
             component="img"
             src={logoSrc}
-            alt={company || "logo"}
+            alt={company}
             sx={{
               maxWidth: "100%",
               maxHeight: "100%",
@@ -66,18 +60,27 @@ const TestimonialCardBCVC = ({
             }}
           />
         </Box>
-      ) : null}
+      )}
 
-      {/* Quote text */}
-      <Box sx={{ flex: 1, pr: badgeText ? 5 : 0 }}>
+      {/* Quote Text */}
+      <Box
+        sx={{
+          flex: 1,
+          textAlign: { xs: "center", sm: "left" },
+          pr: { sm: 3, md: 5 },
+        }}
+      >
         <Typography
-          component="div"
           sx={{
-            ...(theme.typography?.testimonialBCVC || {}),
-            color: "#000000",
+            fontFamily: "Segoe UI",
+            fontWeight: 400,
+            fontSize: { xs: "16px", sm: "18px", md: "24px" },
+            lineHeight: "100%",
+            letterSpacing: "0%",
+            color: "#000",
           }}
         >
-          &ldquo;{quote}&rdquo;
+          “{quote}”
         </Typography>
       </Box>
     </Box>
@@ -87,14 +90,11 @@ const TestimonialCardBCVC = ({
 TestimonialCardBCVC.propTypes = {
   logoSrc: PropTypes.string,
   quote: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  badgeText: PropTypes.string,
   company: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   angle: PropTypes.number,
   opacity: PropTypes.number,
-  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   sx: PropTypes.object,
 };
 

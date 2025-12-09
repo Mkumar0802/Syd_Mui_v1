@@ -24,12 +24,11 @@ export default function CSCarousel({
   containerWidth = "lg",
 }) {
   const trackRef = useRef(null);
-  const [visibleCount, setVisibleCount] = useState(3.35); // decimal visible cards (3 full + 0.35 preview)
-  const [currentIndex, setCurrentIndex] = useState(0); // leftmost visible card index
-  const [lastIndex, setLastIndex] = useState(0); // maximum leftmost index allowed (so final card(s) fully visible)
-  const [slideWidthPx, setSlideWidthPx] = useState(0); // one slide width in px
+  const [visibleCount, setVisibleCount] = useState(3.35);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [lastIndex, setLastIndex] = useState(0);
+  const [slideWidthPx, setSlideWidthPx] = useState(0);
 
-  // Compute responsive visibleCount and slide width
   const updateLayout = useCallback(() => {
     const w = window.innerWidth;
     let visible = 3.35;
@@ -43,12 +42,9 @@ export default function CSCarousel({
       const slidePx = trackClientWidth / visible;
       setSlideWidthPx(slidePx);
 
-      // Use number of fully visible cards for the last index calculation
-      const visibleFull = Math.floor(visible); // e.g. 3 for 3.35
+      const visibleFull = Math.floor(visible);
       const computedLast = Math.max(0, items.length - visibleFull);
       setLastIndex(computedLast);
-
-      // clamp currentIndex
       setCurrentIndex((prev) => Math.min(prev, computedLast));
     }
   }, [items.length]);
@@ -59,16 +55,13 @@ export default function CSCarousel({
     return () => window.removeEventListener("resize", updateLayout);
   }, [updateLayout]);
 
-  // scroll to a specific index (leftmost card index)
   const scrollToIndex = (index) => {
     if (!trackRef.current) return;
     const track = trackRef.current;
     const clamped = Math.max(0, Math.min(index, lastIndex));
 
     let left;
-    // If we're moving to the final allowed index, align to the very end so last card(s) fully visible
     if (clamped === lastIndex) {
-      // scrollWidth - clientWidth is the right-most scroll position
       left = Math.max(0, track.scrollWidth - track.clientWidth);
     } else {
       left = Math.round(clamped * slideWidthPx);
@@ -78,15 +71,9 @@ export default function CSCarousel({
     setCurrentIndex(clamped);
   };
 
-  // next/prev move by 1 card
-  const handleNext = () => {
-    scrollToIndex(currentIndex + 1);
-  };
-  const handlePrev = () => {
-    scrollToIndex(currentIndex - 1);
-  };
+  const handleNext = () => scrollToIndex(currentIndex + 1);
+  const handlePrev = () => scrollToIndex(currentIndex - 1);
 
-  // keep currentIndex in sync while user scrolls manually
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -95,7 +82,6 @@ export default function CSCarousel({
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const scrollLeft = el.scrollLeft;
-        // compute nearest index by dividing by slideWidthPx
         if (slideWidthPx > 0) {
           const idx = Math.round(scrollLeft / slideWidthPx);
           const clamped = Math.max(0, Math.min(idx, lastIndex));
@@ -110,7 +96,6 @@ export default function CSCarousel({
     };
   }, [slideWidthPx, lastIndex]);
 
-  // keyboard controls
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowLeft") handlePrev();
@@ -120,110 +105,121 @@ export default function CSCarousel({
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  // slide width percentage for flex basis (keeps preview)
   const slideWidthPct = `${100 / visibleCount}%`;
 
   return (
     <Box component="section" sx={{ width: "100%", position: "relative", py: { xs: 4, md: 6 } }}>
-     
-        {title && (
-          <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-            {title}
-          </Typography>
-        )}
-        {description && (
-          <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
+
+      {title && (
+        <Typography variant="segoe24Semi" sx={{ mb: 1 }}>
+          {title}
+        </Typography>
+      )}
+
+
+
+      {/* --- DESCRIPTION: accept string OR array-of-strings --- */}
+      {description && (
+        Array.isArray(description) ? (
+          <Box sx={{ mb: 3, mt: 1 }}>
+            {description.map((line, i) => (
+              <Typography key={i} variant="body2" sx={{ color: "text.primary", mb: i < description.length - 1 ? 0.5 : 0 }}>
+                {line}
+              </Typography>
+            ))}
+          </Box>
+        ) : (
+          <Typography variant="body2" sx={{ mb: 3, color: "text.primary" }}>
             {description}
           </Typography>
-        )}
+        )
+      )}
 
-        {/* TRACK */}
-        <Box
-          ref={trackRef}
-          sx={{
-            display: "flex",
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-            gap: 3,
-            px: 0,
-            "&::-webkit-scrollbar": { height: 8, display: "none" },
-          }}
-        >
-          {items.map((it) => (
-            <Box
-              key={it.id}
-              sx={{
-                flex: `0 0 ${slideWidthPct}`,
-                scrollSnapAlign: "start",
-                display: "flex",
-                p: 0,
-                boxSizing: "border-box",
-                alignItems: "stretch",
-              }}
-            >
-              <CSCard
-                image={it.image}
-                title={it.title}
-                description={it.description}
-                ctaLabel={it.ctaLabel}
-                onCta={it.onCta}
-                sx={{ width: "100%" }}
-              />
-            </Box>
-          ))}
-        </Box>
-
-        {/* Controls: Explore on the LEFT, Arrows on the RIGHT */}
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: 3 }}>
-          {/* Left: Explore CTA */}
-          <Box>
-            <ButtonPE label="Explore what we do" onClick={() => console.log("Explore CTA clicked")} />
-          </Box>
-
-          {/* Right: Arrow buttons */}
-          <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-            <ArrowButton
-              direction="left"
-              onClick={handlePrev}
-              sx={{ bgcolor: currentIndex === 0 ? "#8A38F5" : "#8A38F5" }}
-              disabled={currentIndex === 0}
-              data-gesture="16S"
-            />
-
-            <ArrowButton
-              direction="right"
-              onClick={handleNext}
-              sx={{ bgcolor: currentIndex >= lastIndex ? "#8A38F5" : "#8A38F5" }}
-              disabled={currentIndex >= lastIndex}
-              data-gesture="16S"
+      {/* TRACK */}
+      <Box
+        ref={trackRef}
+        sx={{
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          gap: 3,
+          px: 0,
+          "&::-webkit-scrollbar": { height: 8, display: "none" },
+        }}
+      >
+        {items.map((it) => (
+          <Box
+            key={it.id}
+            sx={{
+              flex: `0 0 ${slideWidthPct}`,
+              scrollSnapAlign: "start",
+              display: "flex",
+              p: 0,
+              boxSizing: "border-box",
+              alignItems: "stretch",
+            }}
+          >
+            <CSCard
+              image={it.image}
+              title={it.title}
+              description={it.description}
+              ctaLabel={it.ctaLabel}
+              onCta={it.onCta}
+              sx={{ width: "100%" }}
             />
           </Box>
+        ))}
+      </Box>
+
+      {/* Controls: Explore on the LEFT, Arrows on the RIGHT */}
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <Box>
+          <ButtonPE label="Explore what we do" onClick={() => console.log("Explore CTA clicked")} />
         </Box>
 
-        {/* Dots (represent leftmost index positions) */}
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1.5, mt: 2 }}>
-          {Array.from({ length: Math.max(1, lastIndex + 1) }).map((_, idx) => (
-            <Box
-              key={idx}
-              onClick={() => scrollToIndex(idx)}
-              sx={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                bgcolor: currentIndex === idx ? "primary.main" : "divider",
-                cursor: "pointer",
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Go to position ${idx + 1}`}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") scrollToIndex(idx);
-              }}
-            />
-          ))}
+        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+          <ArrowButton
+            direction="left"
+            onClick={handlePrev}
+            sx={{ bgcolor: currentIndex === 0 ? "#8A38F5" : "#8A38F5" }}
+            disabled={currentIndex === 0}
+            data-gesture="16S"
+          />
+
+          <ArrowButton
+            direction="right"
+            onClick={handleNext}
+            sx={{ bgcolor: currentIndex >= lastIndex ? "#8A38F5" : "#8A38F5" }}
+            disabled={currentIndex >= lastIndex}
+            data-gesture="16S"
+          />
         </Box>
-   
+      </Box>
+
+      {/* Dots */}
+      {/* <Box sx={{ display: "flex", justifyContent: "center", gap: 1.5, mt: 2 }}>
+        {Array.from({ length: Math.max(1, lastIndex + 1) }).map((_, idx) => (
+          <Box
+            key={idx}
+            onClick={() => scrollToIndex(idx)}
+            sx={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              bgcolor: currentIndex === idx ? "primary.main" : "divider",
+              cursor: "pointer",
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label={`Go to position ${idx + 1}`}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") scrollToIndex(idx);
+            }}
+          />
+        ))}
+      </Box> */}
+
     </Box>
   );
 }
@@ -231,6 +227,10 @@ export default function CSCarousel({
 CSCarousel.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string,
-  description: PropTypes.string,
+  // description can be a single string or an array of strings (one per line)
+  description: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   containerWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };

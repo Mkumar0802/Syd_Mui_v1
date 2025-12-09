@@ -1,0 +1,55 @@
+/* src/index.css (or public CSS file loaded before your React mount) */
+
+/* Segoe UI (example local font files) */
+@font-face {
+  font-family: "Segoe UI";
+  src: url("/fonts/SegoeUI-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("/fonts/SegoeUI-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("/fonts/SegoeUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Microsoft JhengHei UI local files (optional if you want to ship it) */
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  src: url("/fonts/MicrosoftJhengHeiUI-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Microsoft JhengHei UI";
+  src: url("/fonts/MicrosoftJhengHeiUI-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Optional baseline reset */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

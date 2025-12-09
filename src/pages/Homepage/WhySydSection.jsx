@@ -32,7 +32,7 @@ export default function WhySydSection({
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "flex-start",
-                        mt: 6,
+                        mt: 3
 
                     }}
                 >

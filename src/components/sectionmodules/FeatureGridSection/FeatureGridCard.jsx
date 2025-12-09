@@ -2,19 +2,19 @@ import React from "react";
 import { Box, Typography, Paper } from "@mui/material";
 
 /**
- * Theme-free FeatureGridCard
+ * Responsive FeatureGridCard
  *
  * Props:
  * - title, body
- * - sx: override styles
- * - height: default 254
- * - bg: optional background (default '#F2F2F2')
+ * - sx: style overrides
+ * - height: optional fixed height (default auto)
+ * - bg: background color
  */
 export default function FeatureGridCard({
   title,
   body,
   sx = {},
-  height = 200,
+  height = "auto",
   bg = "#F2F2F2",
 }) {
   return (
@@ -22,44 +22,38 @@ export default function FeatureGridCard({
       elevation={0}
       square
       sx={{
-        backgroundColor: bg,          // explicit background color
-        height: `${height}px`,
-        width: { xs: "100%", sm: "295px" }, // explicit pixel width on sm+
-        padding: "24px",             // 3 * 8 = 24px (matches previous spacing)
+        backgroundColor: bg,
+        height: height === "auto" ? "auto" : `${height}px`,
+        width: "100%",             // full responsive width
+        p: 3,                      // 24px
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         boxSizing: "border-box",
-        overflow: "hidden",
-        // ensure background isn't covered by anything
-        WebkitTapHighlightColor: "transparent",
+        borderRadius: "4px",
         ...sx,
       }}
     >
       <Box>
         <Typography
-          component="div"
           sx={{
-            fontFamily:
-              `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+            fontFamily: `"Segoe UI", sans-serif`,
             fontWeight: 700,
             fontSize: "16px",
             lineHeight: "24px",
-            marginBottom: "8px",
             color: "#000",
+            mb: 1,
           }}
         >
           {title}
         </Typography>
 
         <Typography
-          component="div"
           sx={{
-            fontFamily:
-              `"Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif`,
+            fontFamily: `"Segoe UI", sans-serif`,
             fontSize: "14px",
             lineHeight: "20px",
-            color: "#666666",
+            color: "#666",
           }}
         >
           {body}
