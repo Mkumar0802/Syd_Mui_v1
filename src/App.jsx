@@ -5,16 +5,14 @@ import HomePage from "./pages/Homepage/HomePage";
 import WhyChooseUs from "./pages/WhyChooseUs/WhyChooseUs";
 import AboutUs from "./pages/AboutUs/AboutUs";
 
-
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route >
+        <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/about-us" element={<AboutUs />} />
-          {/* <Route path="*" element={<MainLayout />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

@@ -25,7 +25,7 @@ const section_three = {
         },
         {
             id: "delivery",
-            image: imgB,
+            image: imgC,
             imageAlt: "Agile team collaboration and planning",
             h3: "Agile, Responsive Delivery",
             body: "You work directly with senior consultants who understand your business and deliver results quickly. Our embedded partnership approach means we integrate seamlessly with your team, sharing knowledge and building capability while getting the job done efficiently.",
@@ -33,10 +33,10 @@ const section_three = {
         },
         {
             id: "track-record",
-            image: imgC,
+            image: imgB,
             imageAlt: "Client partnership and project success",
             h3: "Proven Track Record",
-            body: "12 years of trusted delivery. 225+ projects across 29 customers. We've partnered with iconic New Zealand brands like Zespri, Kordia, and Mitre 10, organisations that rely on us because we consistently deliver every time.",
+            body: "13+ years of trusted delivery. 225+ projects across 29 customers. We've partnered with iconic New Zealand brands like Zespri, Kordia, and Mitre 10, organisations that rely on us because we consistently deliver every time.",
             bullets: [],
         },
     ],

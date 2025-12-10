@@ -92,7 +92,16 @@ export default function WCSCarousel({
   const slideWidthPct = `${100 / visibleCount}%`;
 
   return (
-    <Box component="section" sx={{ width: "100%", pt: 0, pb: { xs: 4, md: 6, mt: "0 !important" } }}>
+    <Box
+      component="section"
+      sx={{
+        width: "100%",
+        pt: 0,
+
+        mt: "0 !important",
+      }}
+    >
+
       <Container maxWidth={containerWidth} disableGutters>
         {/* HEADER */}
         <Box sx={{ mb: 3 }}>
@@ -135,7 +144,7 @@ export default function WCSCarousel({
                   image={item.image}
                   title={item.h3 || item.title}
                   description={item.body || item.description}
-                  ctaLabel={item.ctaLabel || "Learn more"}
+                  ctaLabel={item.ctaLabel}
                   onCta={() => {
                     if (typeof item.onClick === "function") {
                       item.onClick(item);
@@ -157,11 +166,11 @@ export default function WCSCarousel({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mt: 4,
+
           position: "relative" // Added for absolute centering
         }}>
           {/* DOTS - Centered absolutely */}
-          <Box sx={{
+          {/* <Box sx={{
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
@@ -191,31 +200,40 @@ export default function WCSCarousel({
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
-          </Box>
+          </Box> */}
 
-          {/* NAVIGATION BUTTONS - Right side */}
-          <Box sx={{ display: "flex", gap: 2, ml: "auto" }}>
+
+          {/* NAVIGATION BUTTONS - Always visible */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              ml: "auto",
+            }}
+          >
+            {/* LEFT ARROW — always active, no dimming */}
             <ArrowButton
               direction="left"
               onClick={handlePrev}
               data-gesture="16S"
-              disabled={currentIndex === 0}
               sx={{
                 bgcolor: "#8A38F5",
-                opacity: currentIndex === 0 ? 0.32 : 1,
+                opacity: 1,
               }}
             />
+
+            {/* RIGHT ARROW — always active, no dimming */}
             <ArrowButton
               direction="right"
               onClick={handleNext}
               data-gesture="16S"
-              disabled={currentIndex >= lastIndex}
               sx={{
                 bgcolor: "#8A38F5",
-                opacity: currentIndex >= lastIndex ? 0.32 : 1,
+                opacity: 1,
               }}
             />
           </Box>
+
         </Box>
       </Container>
     </Box>

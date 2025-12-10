@@ -1,22 +1,11 @@
 // src/components/carousel/CSCarousel.jsx
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-import { Box, Container, Typography } from "@mui/material";
-import CSCard from "../cards/CSCard/CSCard"; // adjust path if necessary
-import ArrowButton from "../buttons/NavigationLR"; // adjust path if necessary
+import { Box, Typography } from "@mui/material";
+import CSCard from "../cards/CSCard/CSCard";
+import ArrowButton from "../buttons/NavigationLR";
 import ButtonPE from "../buttons/ButtonPE";
 
-/**
- * CSCarousel (one-card paging)
- *
- * Shows N full cards + 35% preview of the next (responsive).
- * Arrow buttons advance by one card (not by a full viewport).
- *
- * When the leftmost index reaches the lastIndex, the carousel snaps to the end
- * so the final card is fully visible.
- *
- * Gesture ID: data-gesture="16S" applied to arrows.
- */
 export default function CSCarousel({
   items = [],
   title,
@@ -77,6 +66,7 @@ export default function CSCarousel({
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+
     let raf = null;
     const onScroll = () => {
       if (raf) cancelAnimationFrame(raf);
@@ -89,6 +79,7 @@ export default function CSCarousel({
         }
       });
     };
+
     el.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       el.removeEventListener("scroll", onScroll);
@@ -108,30 +99,58 @@ export default function CSCarousel({
   const slideWidthPct = `${100 / visibleCount}%`;
 
   return (
-    <Box component="section" sx={{ width: "100%", position: "relative", py: { xs: 4, md: 6 } }}>
+    <Box component="section" sx={{ width: "100%", position: "relative"}}>
 
       {title && (
-        <Typography variant="segoe24Semi" sx={{ mb: 1 }}>
+        <Typography
+          sx={{
+            color: "#000000",
+            textAlign: { xs: "center", sm: "left" },
+            wordBreak: "break-word",
+            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+            fontWeight: 500,
+            fontSize: {
+              xs: "28px",
+              sm: "28px",
+              md: "32px",
+              lg: "32px",
+            },
+            lineHeight: "100%",
+            letterSpacing: "0px",
+          }}>
           {title}
         </Typography>
       )}
 
-
-
-      {/* --- DESCRIPTION: accept string OR array-of-strings --- */}
+      {/* DESCRIPTION */}
       {description && (
         Array.isArray(description) ? (
           <Box sx={{ mb: 3, mt: 1 }}>
             {description.map((line, i) => (
-              <Typography key={i} variant="body2" sx={{ color: "text.primary", mb: i < description.length - 1 ? 0.5 : 0 }}>
+              <Typography key={i} sx={{ color: "text.primary", mb: i < description.length - 1 ? 0.5 : 0 }}>
                 {line}
               </Typography>
             ))}
           </Box>
         ) : (
-          <Typography variant="body2" sx={{ mb: 3, color: "text.primary" }}>
+          <Typography
+            sx={{
+
+              mb: 3,
+              fontFamily: `"Segoe UI", sans-serif`,
+              fontWeight: 400,
+              fontStyle: "normal",
+              fontSize: { xs: "14px", sm: "15px", md: "17px" },
+              lineHeight: { xs: "20px", sm: "21px", md: "29px" },
+              letterSpacing: "0%",
+              whiteSpace: "pre-line",
+              color: "#000000ff",
+
+            }}
+          >
             {description}
           </Typography>
+
         )
       )}
 
@@ -172,8 +191,8 @@ export default function CSCarousel({
         ))}
       </Box>
 
-      {/* Controls: Explore on the LEFT, Arrows on the RIGHT */}
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      {/* Bottom Controls */}
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: { xs: 2, md: 4 } }}>
         <Box>
           <ButtonPE label="Explore what we do" onClick={() => console.log("Explore CTA clicked")} />
         </Box>
@@ -182,43 +201,25 @@ export default function CSCarousel({
           <ArrowButton
             direction="left"
             onClick={handlePrev}
-            sx={{ bgcolor: currentIndex === 0 ? "#8A38F5" : "#8A38F5" }}
-            disabled={currentIndex === 0}
             data-gesture="16S"
+            sx={{
+              bgcolor: "#8A38F5",
+              opacity: 1,
+            }}
           />
 
           <ArrowButton
             direction="right"
             onClick={handleNext}
-            sx={{ bgcolor: currentIndex >= lastIndex ? "#8A38F5" : "#8A38F5" }}
-            disabled={currentIndex >= lastIndex}
             data-gesture="16S"
+            sx={{
+              bgcolor: "#8A38F5",
+              opacity: 1,
+            }}
           />
         </Box>
-      </Box>
 
-      {/* Dots */}
-      {/* <Box sx={{ display: "flex", justifyContent: "center", gap: 1.5, mt: 2 }}>
-        {Array.from({ length: Math.max(1, lastIndex + 1) }).map((_, idx) => (
-          <Box
-            key={idx}
-            onClick={() => scrollToIndex(idx)}
-            sx={{
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              bgcolor: currentIndex === idx ? "primary.main" : "divider",
-              cursor: "pointer",
-            }}
-            role="button"
-            tabIndex={0}
-            aria-label={`Go to position ${idx + 1}`}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") scrollToIndex(idx);
-            }}
-          />
-        ))}
-      </Box> */}
+      </Box>
 
     </Box>
   );
@@ -227,7 +228,6 @@ export default function CSCarousel({
 CSCarousel.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string,
-  // description can be a single string or an array of strings (one per line)
   description: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),

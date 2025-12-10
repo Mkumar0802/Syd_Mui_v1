@@ -16,7 +16,7 @@ const ArrowButton = ({ direction = "left", onClick, sx, ...props }) => {
         height: 48,
         borderRadius: "50%",
         padding: 0,
-        "&:hover": { backgroundColor: "#5b2ee6" },
+        "&:hover": { backgroundColor: "#8A38F5" },
         ...sx,
       }}
       {...props}

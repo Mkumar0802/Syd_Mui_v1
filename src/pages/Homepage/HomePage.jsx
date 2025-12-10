@@ -26,8 +26,9 @@ export default function HomePage() {
         <div>
             <FirstSection />
             <SecondSection partner={partner} csItems={CSItems} />
-            <ThirdSection title="What makes SYD Consulting your Ideal SAP Partner"
-                description="New Zealand organisations choose SYD when they want exceptional SAP expertise delivered with agility, transparency, and genuine partnership."
+            <ThirdSection title={["What makes SYD", " Consulting your Ideal", " SAP Partner"]}
+                description="New Zealand organisations choose SYD when 
+they want exceptional SAP expertise delivered with agility, transparency, and genuine partnership. Here's what we bring to every engagement:"
                 ctaLabel="Explore who we are"
                 items={section_three.sections} />
             <FourthSection

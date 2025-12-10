@@ -4,12 +4,14 @@ import PropTypes from "prop-types";
 import { Box, Grid, Typography } from "@mui/material";
 import HeroSection from "../../layout/HeroSection.jsx";
 import heroImg from "../../assets/aboutus/hero.jpg";
+import HeroBanner from "../../layout/HeroBanner.jsx";
 
 // import SXContainer from "../../layout/SXContainer.jsx";          // adjust path if needed
 import ButtonPE from "../../components/buttons/ButtonPE";    // adjust path if needed
 import Title from "../../layout/Title.jsx";       // your Title component (variant title32)
 import Subtitle from "../../layout/Subtitle.jsx"; // your Subtitle component
-
+import SixthSection from "./SixthSection.jsx";
+import SectionFour from "./SectionFour.jsx";
 
 
 export default function AboutUs({
@@ -19,15 +21,17 @@ export default function AboutUs({
 }) {
     return (
         <main>
-            {/* HERO */}
-            <HeroSection
-                background={background}
-                title={title}
 
-                layout={{ width: 1451, height: 640, top: 75, left: -11 }}
-                align="left"
-                buttons={[]} // intentionally no hero buttons
-            />
+
+            <HeroBanner
+                bgImage={background}
+                overlayImage="/images/watermark.png"
+                label="Trusted partners"
+                title="When SAP consulting became synonymous with complexity, we saw a better way."
+            >
+
+            </HeroBanner>
+
 
             {/* INTRO / LEAD SECTION — matches screenshot: left text, right CTA */}
 
@@ -106,7 +110,8 @@ export default function AboutUs({
                 </Box>
             </Box>
 
-
+            <SectionFour />
+            <SixthSection />
 
 
             {/* You can add more About page sections here (team, values, approach, etc.) */}

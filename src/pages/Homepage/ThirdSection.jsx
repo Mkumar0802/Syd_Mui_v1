@@ -14,6 +14,14 @@ export default function ThirdSection({
     items = [],
     containerWidth = false,
 }) {
+
+    // Split the title into 3 fixed lines
+    const titleLines = [
+        "What makes",
+        "SYD Consulting your",
+        "Ideal SAP Partner"
+    ];
+
     return (
         <SXContainer>
             <Box
@@ -35,25 +43,44 @@ export default function ThirdSection({
                         mt: 3,
                     }}
                 >
-                    <Typography
-                        variant="h5"
-                        sx={{
-                            fontWeight: 700,
-                            mb: 1,
-                            fontSize: { xs: "20px", md: "1.4rem" },
-                            lineHeight: 1.05,
-                        }}
-                    >
-                        {title}
-                    </Typography>
+                    <Stack spacing={0.5} sx={{ mb: 2 }}>
+                        {titleLines.map((line, idx) => (
+                            <Typography
+                                key={idx}
+                                variant="h5"
+                                sx={{
+                                    mb: 1,
+                                    color: "#000000ff",
+                                    textAlign: { xs: "center", sm: "left" },
+                                    wordBreak: "break-word",
+                                    fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+                                    fontWeight: 500,
+                                    fontSize: {
+                                        xs: "28px",
+                                        sm: "28px",
+                                        md: "32px",
+                                        lg: "32px",
+                                    },
+                                    lineHeight: "100%",
+                                    letterSpacing: "0px",
+                                }}
+                            >
+                                {line}
+                            </Typography>
+                        ))}
+                    </Stack>
 
                     <Typography
-                        variant="body2"
                         sx={{
-                            color: "text.secondary",
-                            lineHeight: 1.6,
+                            fontFamily: `"Segoe UI", sans-serif`,
+                            fontWeight: 400,
+                            fontStyle: "normal",
+                            fontSize: { xs: "14px", sm: "15px", md: "17px" },
+                            lineHeight: { xs: "20px", sm: "21px", md: "29px" },
+                            letterSpacing: "0%",
+                            whiteSpace: "pre-line",
+                            color: "#000000ff",
                             mb: 3,
-                            fontSize: "14px",
                         }}
                     >
                         {description}
