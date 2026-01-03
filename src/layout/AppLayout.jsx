@@ -55,15 +55,15 @@ const partner = {
 
 
 function App() {
-  return (
+    return (
         <>
 
             <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
                 {/* <Typography variant="h5">Header</Typography> */}
-      <Header />
-      <Box component="main">
-        <Outlet />
-      </Box>
+                <Header />
+                <Box component="main">
+
+                </Box>
                 <PartnerTestimonial
                     image={partnerImage}
                     eyebrow="Partnering with New Zealand's Leading Organisations"
@@ -75,7 +75,7 @@ function App() {
             </Stack >
             <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
                 {/* <Typography variant="h5">Footer</Typography> */}
-      <Footer />
+                <Footer />
             </Stack >
 
             <Stack sx={{ mt: 4, mb: 4 }} spacing={4} alignItems="center">
@@ -187,7 +187,7 @@ function App() {
                     >
                         <AccordionFeatureList />
                     </Box>
-    </Box>
+                </Box>
             </Stack>
             {/* -------------------------------------------------------------- */}
             {/* 9. FH CARD GRID */}

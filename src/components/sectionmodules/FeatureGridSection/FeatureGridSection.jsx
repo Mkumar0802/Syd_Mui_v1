@@ -20,7 +20,7 @@ export default function FeatureGridSection({
   gap = 3, // MUI spacing = 24px
 }) {
   return (
-    <Box component="section" sx={{ width: "100%", py: 4 }}>
+    <Box component="section" sx={{ width: "100%" }}>
       <SXContainer >
         <Typography
           sx={{
@@ -35,7 +35,7 @@ export default function FeatureGridSection({
             letterSpacing: "0px",
             color: "#111",
             mb: { xs: 2, sm: 3 },
-            paddingTop: "2em",
+            // paddingTop: "2em",
           }}
         >
           Clients work with SYD because they know

@@ -13,15 +13,12 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
     // Measure the exact width of the slide element (fixes 600–900px issues)
     const updateLayout = useCallback(() => {
         if (!trackRef.current) return;
-
         const firstSlide = trackRef.current.querySelector('[data-slide-index="0"]');
         if (firstSlide && firstSlide.clientWidth > 0) {
             setSlideWidth(firstSlide.clientWidth);
-            return;
+        } else {
+            setSlideWidth(trackRef.current.clientWidth);
         }
-
-        // fallback
-        setSlideWidth(trackRef.current.clientWidth);
     }, []);
 
     useEffect(() => {
@@ -30,30 +27,35 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
         return () => window.removeEventListener("resize", updateLayout);
     }, [updateLayout]);
 
-    const scrollToIndex = (index) => {
+    // SCROLL EFFECT: Sync scroll position with currentIndex
+    useEffect(() => {
         if (!trackRef.current || slideWidth <= 0) return;
-
-        const nextIndex = Math.max(0, Math.min(index, items.length - 1));
         trackRef.current.scrollTo({
-            left: nextIndex * slideWidth,
+            left: currentIndex * slideWidth,
             behavior: "smooth"
         });
+    }, [currentIndex, slideWidth]);
 
-        setCurrentIndex(nextIndex);
+    const scrollToIndex = (index) => {
+        setCurrentIndex(index);
     };
 
     const handleNext = useCallback(() => {
-        scrollToIndex(currentIndex >= items.length - 1 ? 0 : currentIndex + 1);
-    }, [currentIndex, items.length]);
+        setCurrentIndex((prevIndex) => {
+            // Re-check width if needed (safety fallback)
+            // But main logic is just index update
+            return prevIndex >= items.length - 1 ? 0 : prevIndex + 1;
+        });
+    }, [items.length]);
 
     // AUTOPLAY every 3s
     useEffect(() => {
-        if (autoplayRef.current) clearInterval(autoplayRef.current);
+        // If items are empty or only 1 item, don't autoplay? (Optional, but safe)
+        if (items.length <= 1) return;
 
         autoplayRef.current = setInterval(handleNext, 3000);
-
         return () => clearInterval(autoplayRef.current);
-    }, [handleNext]);
+    }, [handleNext, items.length]);
 
     if (!items.length) return null;
 
@@ -61,7 +63,7 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
         <Box sx={{ width: "100%", py: { xs: 4, md: 6 }, overflow: "hidden" }}>
 
 
-     
+
 
             {/* Slider Track */}
             <Box
@@ -96,7 +98,7 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
             </Box>
 
             {/* Dots */}
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 1.2, mt: 3 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", gap: 1.3, mt: 2 }}>
                 {items.map((_, idx) => {
                     const active = currentIndex === idx;
                     return (
@@ -104,10 +106,10 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
                             key={idx}
                             onClick={() => scrollToIndex(idx)}
                             sx={{
-                                width: active ? "35px" : "9px",
-                                height: "9px",
-                                borderRadius: "4.5px",
-                                bgcolor: active ? "#9F9F9F" : "#D9D9D9",
+                                width: active ? 35 : 10,
+                                height: 10,
+                                borderRadius: active ? "6px" : "50%",
+                                bgcolor: active ? "primary.main" : "#ccc",
                                 cursor: "pointer",
                                 transition: "all 0.3s ease"
                             }}

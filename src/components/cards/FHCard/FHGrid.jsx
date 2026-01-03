@@ -8,11 +8,11 @@ import { Typography } from "@mui/material";
 /**
  * FHGrid - 3-up responsive grid aligned like FeatureGridSection
  */
-export default function FHGrid({ items,  }) {
+export default function FHGrid({ items, }) {
   return (
-    <Box component="section" sx={{ width: "100%", py: 4 }}>
-       <SXContainer>
-                
+    <Box component="section" sx={{ width: "100%" }}>
+      <SXContainer>
+
         <Grid
           container
           spacing={3}
@@ -39,8 +39,8 @@ export default function FHGrid({ items,  }) {
             </Grid>
           ))}
         </Grid>
-        </SXContainer>
-  
+      </SXContainer>
+
     </Box>
   );
 }

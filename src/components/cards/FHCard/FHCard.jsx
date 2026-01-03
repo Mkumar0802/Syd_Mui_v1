@@ -29,7 +29,7 @@ export default function FHCard({ image, imageLabel, title, description, sx }) {
           overflow: "hidden",
           borderRadius: 0,
           // image height responsive to match screenshot proportions
-          height: { xs: 160, sm: 190, md: 200, lg: 200 },
+          height: { xs: 160, sm: 190, md: 200, lg: 240 },
           mb: 2,
         }}
       >

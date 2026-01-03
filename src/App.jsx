@@ -4,6 +4,8 @@ import MainLayout from "./layout/MainLayout";
 import HomePage from "./pages/Homepage/HomePage";
 import WhyChooseUs from "./pages/WhyChooseUs/WhyChooseUs";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import AppLayout from "./layout/AppLayout";
+
 
 export default function App() {
   return (
@@ -12,7 +14,9 @@ export default function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about-us" element={<AboutUs />} />    
+          <Route path="/AppLayout" element={<AppLayout />} /> 
+
         </Route>
       </Routes>
     </BrowserRouter>

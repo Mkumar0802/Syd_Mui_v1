@@ -26,12 +26,15 @@ export default function FeatureGrid({
       component="section"
       sx={{
         width: "100%",
-        py: { xs: 4, sm: 6, md: 8 },
-        ...containerSx,
+        p: 0, // 🔴 removes all container padding
       }}
     >
+<SXContainer
+  disableGutters
+  py={0}        // 🔴 THIS removes top & bottom padding
+  sx={{ p: 0 }} // optional safety, but fine
+>
 
-      <SXContainer>
         <Typography
           sx={{
             fontFamily: `"Microsoft JhengHei UI", sans-serif`,
@@ -41,10 +44,8 @@ export default function FeatureGrid({
               sm: "clamp(26px, 5vw, 30px)",
               md: "32px",
             },
-
             color: "#111",
             mb: { xs: 2, sm: 3 },
-
           }}
         >
           Our Track Record

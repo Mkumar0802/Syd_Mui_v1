@@ -1,44 +1,97 @@
-// src/components/HeroBanner.jsx
+// src/components/hero/HeroBanner.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
+import ButtonPE from "../components/buttons/ButtonPE";
+import SXContainer from "../layout/SXContainer.jsx";
+import heroImg from "../assets/home/SYD_homepaged_hero_banner_Auckland1.jpg";
 
 /**
- * HeroBanner
+ * Reusable HeroBanner
  *
- * Minimal, reusable hero built with MUI Box + Typography only.
- * - bgImage: background image URL
- * - overlayImage: optional centered decorative overlay image URL
- * - label: small uppercase eyebrow text (optional)
- * - title: string or array of strings (each array item -> its own line)
- * - align: "left" | "center" | "right" controls content alignment (default "left")
- * - height: responsive height object or string (default uses xs/sm/md/lg breakpoints)
- * - gradient: CSS gradient string for overlay (optional, default provided)
- * - contentMaxWidth: max width for text content
- * - children: optional node(s) for buttons or extra content (rendered below the caption/title)
+ * Props:
+ *  - background (string): URL for background image
+ *  - overlayImage (string|null): optional centered decorative overlay image URL
+ *  - label (string): eyebrow text
+ *  - title (string|array): lines for title
+ *  - caption (string|array): lines for caption
+ *  - align ("left"|"center"|"right")
+ *  - height (string|object): responsive height
+ *  - contentMaxWidth (string|object)
+ *  - actions (array): [
+ *      { key, label, size, sx, onClick, href, component, disabled }
+ *    ]
+ *    if not provided, component renders default two buttons (Get in touch / Explore who we are)
+ *  - children: if provided, rendered below caption instead of actions
+ *  - ariaLabel
  */
 export default function HeroBanner({
-    bgImage,
-    overlayImage,
-    label,
-    title,
+    background = heroImg,
+    overlayImage = null,
+    label = "",
+    title = ["SAP Consulting", "Built for New Zealand", "Businesses"],
+    caption = [],
     align = "left",
     height = { xs: "360px", sm: "420px", md: "520px", lg: "600px" },
-    gradient = "linear-gradient(90deg, rgba(0,0,0,0.75) 15%, rgba(0,0,0,0.0) 85%)",
-    contentMaxWidth = { xs: "90%", sm: "85%", md: "680px" },
-    children,
+    contentMaxWidth = { xs: "92%", sm: "86%", md: "621px" },
+    contentTop = 0,    // new prop
+    actions = null,
+    children = null,
     ariaLabel = "Hero banner",
 }) {
-    const titleLines = Array.isArray(title)
-        ? title
-        : typeof title === "string"
-            ? title.split("\n")
-            : [];
+    const titleLines = Array.isArray(title) ? title : String(title).split("\n");
+    const captionLines = Array.isArray(caption) ? caption : String(caption).split("\n");
 
-    // alignment mapping to textAlign and horizontal padding placement
     const textAlign = align;
     const justifyContent =
         align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start";
+
+    const renderActions = () => {
+        // if custom actions provided, map them
+        if (Array.isArray(actions) && actions.length > 0) {
+            return (
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={2}
+                    alignItems={{ xs: "stretch", sm: "center" }}
+                    sx={{
+                        justifyContent: { xs: "center", sm: "flex-start" },
+                    }}
+                >
+                    {actions.map((act, i) => (
+                        <ButtonPE
+                            key={act.key ?? `${act.label}-${i}`}
+                            label={act.label}
+                            size={act.size ?? "large"}
+                            sx={{
+                                minWidth: act.minWidth ?? (i === 0 ? 150 : 190),
+                                width: { xs: "100%", sm: "auto" },
+                                ...act.sx,
+                            }}
+                            onClick={act.onClick}
+                            href={act.href}
+                            component={act.component}
+                            disabled={act.disabled}
+                        />
+                    ))}
+                </Stack>
+            );
+        }
+
+        // fallback: default two buttons for parity with FirstSection
+        return (
+            <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                alignItems={{ xs: "stretch", sm: "center" }}
+                sx={{
+                    justifyContent: { xs: "center", sm: "flex-start" },
+                }}
+            >
+
+            </Stack>
+        );
+    };
 
     return (
         <Box
@@ -49,26 +102,15 @@ export default function HeroBanner({
                 width: "100%",
                 height,
                 position: "relative",
-                backgroundImage: bgImage ? `url(${bgImage})` : "none",
+                display: "flex",
+                alignItems: "center",
+                backgroundImage: background ? `url(${background})` : "none",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
             }}
         >
-            {/* Gradient overlay */}
-            <Box
-                sx={{
-                    position: "absolute",
-                    inset: 0,
-                    background: gradient,
-                    zIndex: 1,
-                }}
-            />
-
-            {/* Optional overlay image */}
             {overlayImage && (
                 <Box
                     sx={{
@@ -80,108 +122,114 @@ export default function HeroBanner({
                         backgroundPosition: "center",
                         pointerEvents: "none",
                         zIndex: 2,
+                        opacity: { xs: 0.5, md: 0.9 },
                     }}
                 />
             )}
 
-            {/* Content wrapper */}
-            <Box
+            <SXContainer
+                maxWidth="xl"
                 sx={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent,
                     position: "relative",
                     zIndex: 3,
-                    width: "100%",
-                    display: "flex",
-                    justifyContent,
-                    px: { xs: 2, sm: 4, md: 10 },
+                    px: 0,
                 }}
             >
-                <Box
-                    sx={{
-                        maxWidth: contentMaxWidth,
-                        textAlign,
-                    }}
-                >
+                <Box sx={{ width: contentMaxWidth, textAlign, mx: { xs: "auto", md: 0 } }}>
                     {label && (
                         <Typography
                             sx={{
+                                color: "#ffffffcc",
+                                mb: { xs: 1.5, sm: 2 },
+                                textTransform: "uppercase",
+                                textAlign,
                                 fontFamily: `"Segoe UI", sans-serif`,
                                 fontWeight: 600,
                                 fontSize: { xs: "12px", sm: "14px", md: "16px" },
-                                lineHeight: "100%",
                                 letterSpacing: "13%",
-                                textTransform: "uppercase",
-                                color: "#ffffffcc",
-                                mb: { xs: 1.5, sm: 2 },
                             }}
                         >
                             {label}
                         </Typography>
                     )}
 
-                    {titleLines.length > 0 && (
-                        <Box>
-                            {titleLines.map((line, i) => (
-                                <Typography
-                                    key={i}
-                                    sx={{
-                                        display: "block",
-                                        fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                                        fontWeight: 500,
-                                        fontSize: {
-                                            xs: "26px",
-                                            sm: "34px",
-                                            md: "42px",
-                                            lg: "48px",
-                                        },
-                                        lineHeight: "120%",
-                                        letterSpacing: "0%",
-                                        color: "#ffffff",
-                                        whiteSpace: "pre-line",
-                                        maxWidth: "683px",
-                                        mb: i === titleLines.length - 1 && children ? 2 : 0,
-                                        // center the title block horizontally for center alignment
-                                        mx: align === "center" ? "auto" : 0,
-                                    }}
-                                >
-                                    {line}
-                                </Typography>
-                            ))}
-                        </Box>
-                    )}
+                    <Stack spacing={0} sx={{ mb: { xs: 2, sm: 3, md: 3 } }}>
+                        {titleLines.map((line, idx) => (
+                            <Typography
+                                key={idx}
+                                sx={{
+                                    color: "#FFFFFF",
+                                    textAlign,
+                                    wordBreak: "break-word",
+                                    fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+                                    fontWeight: 500,
+                                    fontSize: { xs: "28px", sm: "36px", md: "48px", lg: "56px" },
+                                    lineHeight: "100%",
+                                    letterSpacing: "0px",
+                                }}
+                            >
+                                {line}
+                            </Typography>
+                        ))}
+                    </Stack>
 
-                    {/* children slot (buttons, small caption, links etc.) */}
-                    {children && (
-                        <Box
-                            sx={{
-                                mt: 1,
-                                display: "flex",
-                                gap: 2,
-                                justifyContent:
-                                    align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start",
-                                flexWrap: "wrap",
-                            }}
-                        >
-                            {children}
-                        </Box>
-                    )}
+                    <Stack sx={{ mb: { xs: 2, sm: 3, md: 3 }, mt: { xs: 2, sm: 3, md: 3 } }}>
+                        {captionLines.map((line, idx) => (
+                            <Typography
+                                key={idx}
+                                sx={{
+                                    color: "rgba(255,255,255,0.92)",
+                                    maxWidth: "520px",
+                                    mx: { xs: "auto", sm: 0 },
+                                    fontFamily: `"Segoe UI", sans-serif`,
+                                    fontWeight: 600,
+                                    fontSize: { xs: "14px", sm: "15px", md: "16px" },
+                                    lineHeight: 1.6,
+                                    textAlign,
+                                    wordBreak: "break-word",
+                                    letterSpacing: "0px",
+                                    whiteSpace: "pre-line",
+                                }}
+                            >
+                                {line}
+                            </Typography>
+                        ))}
+                    </Stack>
+
+                    {/* children override actions */}
+                    {children ? <Box sx={{ mt: 1 }}>{children}</Box> : <Box sx={{ mt: 1 }}>{renderActions()}</Box>}
                 </Box>
-            </Box>
+            </SXContainer>
         </Box>
     );
 }
 
 HeroBanner.propTypes = {
-    bgImage: PropTypes.string,
+    background: PropTypes.string,
     overlayImage: PropTypes.string,
     label: PropTypes.string,
-    title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string),
-    ]),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    caption: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
     align: PropTypes.oneOf(["left", "center", "right"]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    gradient: PropTypes.string,
     contentMaxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    actions: PropTypes.arrayOf(
+        PropTypes.shape({
+            key: PropTypes.string,
+            label: PropTypes.string.isRequired,
+            size: PropTypes.string,
+            sx: PropTypes.object,
+            onClick: PropTypes.func,
+            href: PropTypes.string,
+            component: PropTypes.elementType,
+            disabled: PropTypes.bool,
+            minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        })
+    ),
     children: PropTypes.node,
     ariaLabel: PropTypes.string,
 };

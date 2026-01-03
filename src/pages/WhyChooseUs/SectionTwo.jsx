@@ -10,7 +10,7 @@ function SectionTwo() {
             aria-label="Our Promise"
             sx={{
                 width: "100%",
-                py: { xs: 6, sm: 8, md: 10 },
+                // py: { xs: 3, sm: 4, md: 6 },
                 backgroundColor: "#FFFFFF",
             }}
         >
@@ -87,16 +87,16 @@ function SectionTwo() {
                         width: "100%",
                         display: "flex",
                         justifyContent: "center",
-                        mt: { xs: 4, sm: 6, md: 8 },
+
                     }}
                 >
                     <Box
                         sx={{
                             position: "relative",
-                            width: "100%",
+
                             maxWidth: { xs: "92%", sm: "760px", md: "900px" },
                             px: { xs: 3, sm: 5, md: 6 },
-                            py: { xs: 3, sm: 4, md: 4 },
+                            // py: { xs: 3, sm: 4, md: 4 },
                             textAlign: "left",
                             display: "flex",
                             alignItems: "center",

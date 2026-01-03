@@ -17,16 +17,16 @@ import TestimonialCarousel from "../../components/carousel/TestimonialCarousel.j
 import Title from "../../layout/Title.jsx";
 import SecondSection from "./SectionTwo.jsx";
 import SXContainer from "../../layout/SXContainer.jsx";
+import SectionEight from "./SectionEight.jsx";
 
 export default function WhyChooseUs() {
     return (
         <main>
             <HeroSection
                 background={heroImg}
+                eyebrow="WHY CHOOSE US"
                 title={["Why Business", "Choose SYD"]}
-                layout={{ width: 1451, height: "auto" }}
-
-
+                layout={{ height: "auto" }}
             />
 
 
@@ -40,10 +40,11 @@ export default function WhyChooseUs() {
             <FeatureGridSection items={featureItems} gap={3} />
             <HeroSection
                 background={section3}
+                eyebrow="WHAT WE STAND FOR"
                 title={["Our values aren’t just words on a wall."]}
+                caption={`They guide how we work, how we solve problems,
+and how we show up for our clients every day.`}
                 layout={{ width: 1451, height: "auto" }}
-
-
             />
 
 
@@ -53,10 +54,40 @@ export default function WhyChooseUs() {
 
 
 
+            <Box
+                component="section"
+                sx={{
 
-            <FeatureGrid items={features} />
+                    width: "100%",
+                    mb: 8,
+
+                }}
+            >
+
+                <FeatureGrid items={features} />
+
+                <Typography
+                    sx={{
+                        fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+                        fontWeight: 700,
+                        textAlign: "center",
+                        paddingTop: "2em",
+                        fontSize: {
+                            xs: "clamp(24px, 6vw, 28px)",
+                            sm: "clamp(26px, 5vw, 30px)",
+                            md: "24px",
+                        },
+                    }}
+                >
+                    Our Work → See how we've helped businesses like yours
+                </Typography>
 
 
+            </Box>
+
+
+
+            {/* Title: left-aligned inside the content column */}
 
 
             {/* Testimonial band — title above carousel, no overlay */}
@@ -66,12 +97,25 @@ export default function WhyChooseUs() {
                     backgroundColor: "#F2F2F2",
                     width: "100%",
                     py: { xs: 4, sm: 6, md: 8 },
-                    position: "relative",
-                    display: "flex",
-                    justifyContent: "center",   // center the column on the page
-                    alignItems: "flex-start",
+
                 }}
             >
+                <SXContainer>
+                    <Typography
+                        sx={{
+                            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+                            fontWeight: 700,
+                            fontSize: { xs: "clamp(20px, 5.5vw, 26px)", sm: "clamp(24px,4.5vw,30px)", md: "32px" },
+                            lineHeight: "100%",
+                            letterSpacing: "0px",
+                            color: "#111",
+                            textAlign: "left",
+                        }}
+                    >
+                        Trusted by Leading Kiwi Brands
+                    </Typography>
+                </SXContainer>
+
                 <Box
                     sx={{
                         width: "100%",
@@ -83,21 +127,7 @@ export default function WhyChooseUs() {
                         gap: { xs: 2, sm: 3 }, // space between title and carousel
                     }}
                 >
-                    {/* Title: left-aligned inside the content column */}
-                    <Typography
-                        sx={{
-                            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                            fontWeight: 700,
-                            fontSize: { xs: "clamp(20px, 5.5vw, 26px)", sm: "clamp(24px,4.5vw,30px)", md: "32px" },
-                            lineHeight: "100%",
-                            letterSpacing: "0px",
-                            color: "#111",
-                            textAlign: "left",
 
-                        }}
-                    >
-                        Trusted by Leading Kiwi Brands
-                    </Typography>
 
                     {/* Carousel block (centered inside the content area) */}
                     <Box
@@ -117,7 +147,7 @@ export default function WhyChooseUs() {
 
 
 
-
+            <SectionEight />
 
             {/* SectionOne — kept but hidden (you can toggle display via prop or remove) */}
             {/* <Box sx={{ display: "none", mt: 10 }}>

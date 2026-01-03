@@ -75,7 +75,7 @@ const TestimonialCardBCVC = ({
             fontFamily: "Segoe UI",
             fontWeight: 400,
             fontSize: { xs: "16px", sm: "18px", md: "24px" },
-            lineHeight: "100%",
+            lineHeight: "130%", // slightly increased for better readability
             letterSpacing: "0%",
             color: "#000",
           }}
@@ -83,6 +83,8 @@ const TestimonialCardBCVC = ({
           “{quote}”
         </Typography>
       </Box>
+
+
     </Box>
   );
 };
