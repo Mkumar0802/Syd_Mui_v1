@@ -13,6 +13,8 @@ import Title from "../../layout/Title.jsx";       // your Title component (varia
 import Subtitle from "../../layout/Subtitle.jsx"; // your Subtitle component
 import SixthSection from "./SixthSection.jsx";
 import SectionFour from "./SectionFour.jsx";
+import SectionFifth from "./SectionFifth.jsx";
+import StoryBanner from "./StoryBanner.jsx";
 import SXContainer from "../../layout/SXContainer.jsx";
 
 
@@ -27,12 +29,9 @@ export default function AboutUs({
             <HeroSection
                 background={heroImg}
                 eyebrow="About Us"
-                title={["Meet SYD Consulting", "New Zealand's Trusted SAP Specialists"]}
+                title={["Meet SYD Consulting —", "New Zealand's Trusted", "SAP Specialists"]}
                 layout={{ height: "auto" }}
             />
-
-
-
 
 
             {/* INTRO / LEAD SECTION — matches screenshot: left text, right CTA */}
@@ -45,17 +44,18 @@ export default function AboutUs({
                     sx={{
                         display: "flex",
                         flexDirection: { xs: "column", md: "row" },
-                        alignItems: { xs: "flex-start", md: "center" },
+                        alignItems: { xs: "flex-start", md: "flex-end" }, // Align button to bottom of text on desktop
                         justifyContent: "space-between",
                         gap: { xs: 4, md: 6 },
                     }}
                 >
                     {/* LEFT CONTENT */}
-                    <Box sx={{ maxWidth: "900px" }}>
+                    <Box sx={{ maxWidth: { xs: "100%", md: "800px", lg: "1000px" } }}>
                         <Title
                             sx={{
                                 mb: 2,
                                 fontFamily: `"Microsoft JhengHei UI", "Segoe UI", sans-serif`,
+                                fontSize: { xs: "28px", sm: "32px", md: "40px" } // Responsive title size
                             }}
                         >
                             We're trusted SAP experts who make things simple.
@@ -66,7 +66,7 @@ export default function AboutUs({
                                 mt: 2,
                                 mb: 2,
                                 fontFamily: `"Segoe UI", sans-serif`,
-                                fontSize: "16px",
+                                fontSize: { xs: "15px", md: "16px" },
                                 lineHeight: "28px",
                                 color: "text.primary",
                             }}
@@ -83,7 +83,7 @@ export default function AboutUs({
                             sx={{
                                 mb: 0,
                                 fontFamily: `"Segoe UI", sans-serif`,
-                                fontSize: "16px",
+                                fontSize: { xs: "15px", md: "16px" },
                                 lineHeight: "28px",
                                 color: "text.primary",
                             }}
@@ -102,6 +102,7 @@ export default function AboutUs({
                             position: "relative",
                             width: { xs: "100%", md: "auto" },
                             textAlign: { xs: "left", md: "right" },
+                            mb: { md: 1 } // Small offset for optical alignment with text
                         }}
                     >
                         <ButtonPE
@@ -111,7 +112,8 @@ export default function AboutUs({
                                 console.log("Explore what we do clicked");
                             }}
                             sx={{
-                                minWidth: 190,
+                                minWidth: { xs: "100%", sm: 200 },
+                                py: 1.5
                             }}
                         />
                     </Box>
@@ -120,12 +122,7 @@ export default function AboutUs({
 
 
 
-            <HeroSection
-                background={heroImg2}
-                eyebrow="About Us"
-                title={["Meet SYD Consulting", "New Zealand's Trusted SAP Specialists"]}
-                layout={{ height: "auto" }}
-            />
+            <StoryBanner />
 
             {/* <Box
                 sx={{
@@ -146,6 +143,7 @@ export default function AboutUs({
             </Box> */}
 
             <SectionFour />
+            <SectionFifth />
             <SixthSection />
 
 

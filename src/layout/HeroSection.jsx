@@ -100,12 +100,12 @@ export default function HeroWithDots({
                   fontFamily: `"Microsoft JhengHei UI", sans-serif`,
                   fontWeight: 600,
                   fontSize: {
-                    xs: "28px",
+                    xs: line.length > 20 ? "24px" : "28px", // Scale down if line is too long
                     sm: "36px",
                     md: "48px",
                     lg: "56px",
                   },
-                  lineHeight: "100%",
+                  lineHeight: { xs: "1.2", sm: "1.1", md: "100%" },
                   wordBreak: "break-word",
                   textAlign: { xs: "center", sm: "left" },
                 }}
