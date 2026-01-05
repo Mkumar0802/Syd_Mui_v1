@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 
 const TestimonialCardBCVC = ({
   logoSrc,
+  title,
   quote,
-  company,
   width = { xs: "100%", sm: "90%", md: "820px", lg: "820px" },
   height = { xs: "auto", md: "283px" },
   angle = 0,
@@ -18,14 +18,13 @@ const TestimonialCardBCVC = ({
       sx={{
         width,
         height,
-        maxWidth: "820px",                  // prevents stretching above design spec
+        maxWidth: "820px",
         transform: `rotate(${angle}deg)`,
         opacity,
         backgroundColor: "#FFFFFF",
         display: "flex",
         flexDirection: { xs: "column", sm: "row" },
-        alignItems: { xs: "center", sm: "center" },
-        justifyContent: "flex-start",
+        alignItems: "center",
         gap: { xs: 2, sm: 4 },
         px: { xs: 2, sm: 4 },
         py: { xs: 3, md: 0 },
@@ -35,23 +34,25 @@ const TestimonialCardBCVC = ({
         ...sx,
       }}
     >
-      {/* Logo */}
+      {/* Logo Wrapper Circle */}
       {logoSrc && (
         <Box
           sx={{
             flexShrink: 0,
-            width: { xs: 80, sm: 100, md: 140 },
-            height: { xs: 35, sm: 45, md: 60 },
+            width: { xs: "100px", md: "130px" },
+            height: { xs: "100px", md: "130px" },
+            borderRadius: "50%",
+            backgroundColor: "#F3E9FF", // Subtle purple background for the circle
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            mb: { xs: 2, sm: 0 },
+            overflow: "hidden",
           }}
         >
           <Box
             component="img"
             src={logoSrc}
-            alt={company}
+            alt={title}
             sx={{
               maxWidth: "100%",
               maxHeight: "100%",
@@ -62,7 +63,7 @@ const TestimonialCardBCVC = ({
         </Box>
       )}
 
-      {/* Quote Text */}
+      {/* Text */}
       <Box
         sx={{
           flex: 1,
@@ -73,26 +74,35 @@ const TestimonialCardBCVC = ({
         <Typography
           sx={{
             fontFamily: "Segoe UI",
+            fontWeight: 700,
+            fontSize: { xs: "18px", sm: "20px", md: "22px" },
+            mb: 1,
+            color: "#000",
+          }}
+        >
+          {title}
+        </Typography>
+
+        <Typography
+          sx={{
+            fontFamily: "Segoe UI",
             fontWeight: 400,
             fontSize: { xs: "16px", sm: "18px", md: "24px" },
-            lineHeight: "130%", // slightly increased for better readability
-            letterSpacing: "0%",
+            lineHeight: "130%",
             color: "#000",
           }}
         >
           “{quote}”
         </Typography>
       </Box>
-
-
     </Box>
   );
 };
 
 TestimonialCardBCVC.propTypes = {
   logoSrc: PropTypes.string,
+  title: PropTypes.string.isRequired,
   quote: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  company: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   angle: PropTypes.number,

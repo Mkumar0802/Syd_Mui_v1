@@ -72,7 +72,7 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
                     display: "flex",
                     overflow: "hidden",
                     scrollSnapType: "x mandatory",
-                    maxWidth: { xs: "100%", sm: "720px", md: "900px" },
+                    maxWidth: "100%",
                     mx: "auto"
                 }}
             >

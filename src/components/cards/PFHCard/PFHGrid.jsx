@@ -19,7 +19,7 @@ export default function PFHGrid({ items, title, containerWidth = "lg" }) {
                         sx={{
                             mb: 4,
                             fontWeight: 700,
-                            textAlign: "center",
+                            textAlign: { xs: "center", md: "left" },
                         }}
                     >
                         {title}

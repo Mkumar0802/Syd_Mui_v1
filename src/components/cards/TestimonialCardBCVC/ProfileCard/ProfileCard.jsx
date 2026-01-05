@@ -10,6 +10,7 @@ const ProfileCard = ({ name, role, src }) => {
     <Box
       sx={{
         width: "190px",
+        maxWidth: "100%",
         height: "190px",
         display: "flex",
         flexDirection: "column",
@@ -19,17 +20,18 @@ const ProfileCard = ({ name, role, src }) => {
         boxSizing: "border-box",
       }}
     >
-      {/* EMPTY CIRCLE — NO DEFAULT USER ICON */}
+      {/* CIRCLE WRAPPER */}
       <Box
         sx={{
-          width: "120px",
-          height: "120px",
+          width: { xs: "100px", md: "130px" },
+          height: { xs: "100px", md: "130px" },
           borderRadius: "50%",
           backgroundColor: "#D9D9D9",
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexShrink: 0,
         }}
       >
         {src ? (
