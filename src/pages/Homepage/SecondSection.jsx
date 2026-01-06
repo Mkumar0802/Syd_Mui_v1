@@ -11,7 +11,7 @@ export default function SecondSection({ partner = {}, csItems = [] }) {
     const imgH = 401.5622863769531;
 
     return (
-        <SXContainer component="section">
+        <SXContainer component="section" py={{ xs: 8, md: 12 }}>
             {/* SERVICES CAROUSEL */}
             <CSCarousel
                 items={csItems}

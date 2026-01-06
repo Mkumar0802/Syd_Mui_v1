@@ -30,7 +30,8 @@ function FirstSection({
             sx={{
                 width: "100%",
                 position: "relative",
-                minHeight: { xs: "360px", sm: "420px", md: "520px", lg: "600px" },
+                minHeight: { xs: "500px", sm: "600px", md: "700px", lg: "800px" },
+                height: "auto",
                 display: "flex",
                 alignItems: "center",
                 backgroundImage: `url(${background})`,
@@ -38,8 +39,13 @@ function FirstSection({
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 overflow: "hidden",
-                // px: { xs: 2, sm: 4, md: 10 },
-                // py: { xs: 6, sm: 8, md: 10 },
+                "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: 0,
+                    background: "rgba(0,0,0,0.35)",
+                    zIndex: 1,
+                }
             }}
         >
             {overlayImage && (
@@ -61,53 +67,48 @@ function FirstSection({
             <SXContainer
                 maxWidth="xl"
                 sx={{
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: { xs: "center", md: "flex-start" },
                     position: "relative",
                     zIndex: 3,
-                    px: 0,
+                    py: { xs: 8, md: 12 },
                 }}
             >
                 <Box
                     sx={{
-                        width: { xs: "92%", sm: "86%", md: "621px" },
-                        mx: { xs: "auto", md: 0 },
-                        textAlign: { xs: "center", sm: "left" },
+                        width: { xs: "100%", md: "700px" },
+                        textAlign: { xs: "center", md: "left" },
                     }}
                 >
                     {label && (
                         <Typography
                             sx={{
                                 color: "#ffffffcc",
-                                mb: { xs: 1.5, sm: 2 },
+                                mb: 2,
                                 textTransform: "uppercase",
-                                textAlign: { xs: "center", sm: "left" },
+                                fontWeight: 600,
+                                letterSpacing: "1.5px",
+                                fontSize: { xs: "12px", md: "14px" },
                             }}
                         >
                             {label}
                         </Typography>
                     )}
 
-                    <Stack spacing={0} sx={{ mb: { xs: 2, sm: 3, md: 3 } }}>
+                    <Stack spacing={0} sx={{ mb: 4 }}>
                         {titleLines.map((line, idx) => (
                             <Typography
                                 key={idx}
                                 sx={{
                                     color: "#FFFFFF",
-                                    textAlign: { xs: "center", sm: "left" },
-                                    wordBreak: "break-word",
-                                    fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                                    fontWeight: 500,
+                                    fontFamily: '"Microsoft JhengHei UI", sans-serif',
+                                    fontWeight: 700,
                                     fontSize: {
-                                        xs: "28px",
-                                        sm: "36px",
-                                        md: "48px",
-                                        lg: "56px",
+                                        xs: "32px",
+                                        sm: "42px",
+                                        md: "52px",
+                                        lg: "64px",
                                     },
-                                    lineHeight: "100%",
-                                    letterSpacing: "0px",
+                                    lineHeight: { xs: 1.1, md: 1.05 },
+                                    wordBreak: "break-word",
                                 }}
                             >
                                 {line}
@@ -115,29 +116,20 @@ function FirstSection({
                         ))}
                     </Stack>
 
-                    <Stack
-                        sx={{
-                            mb: { xs: 2, sm: 3, md: 3 },
-                            mt: { xs: 2, sm: 3, md: 3 },
-                        }}
-                    >
+                    <Stack sx={{ mb: 5 }}>
                         {captionLines.map((line, idx) => (
                             <Typography
                                 key={idx}
                                 sx={{
-                                    color: "rgba(255,255,255,0.92)",
-                                    maxWidth: "520px",
-                                    mx: { xs: "auto", sm: 0 },
-                                    fontFamily: `"Segoe UI", sans-serif`,
-                                    fontWeight: 600,        // or 600 for semibold
-                                    fontSize: { xs: "14px", sm: "15px", md: "16px" },
+                                    color: "rgba(255,255,255,0.95)",
+                                    maxWidth: "550px",
+                                    mx: { xs: "auto", md: 0 },
+                                    fontFamily: '"Segoe UI", sans-serif',
+                                    fontWeight: 400,
+                                    fontSize: { xs: "16px", md: "18px" },
                                     lineHeight: 1.6,
-                                    textAlign: { xs: "center", sm: "left" },
-                                    wordBreak: "break-word",
-                                    letterSpacing: "0px",
-                                    whiteSpace: "pre-line",
+                                    mb: 1,
                                 }}
-
                             >
                                 {line}
                             </Typography>
@@ -146,22 +138,22 @@ function FirstSection({
 
                     <Stack
                         direction={{ xs: "column", sm: "row" }}
-                        spacing={2}
-                        alignItems={{ xs: "stretch", sm: "center" }}
+                        spacing={3}
                         sx={{
-                            justifyContent: { xs: "center", sm: "flex-start" },
+                            justifyContent: { xs: "center", md: "flex-start" },
+                            alignItems: "center",
                         }}
                     >
                         <ButtonPE
                             label="Get in touch"
                             size="large"
-                            sx={{ minWidth: 150, width: { xs: "100%", sm: "auto" } }}
+                            sx={{ minWidth: 180, width: { xs: "100%", sm: "auto" } }}
                         />
 
                         <ButtonPE
                             label="Explore who we are"
                             size="large"
-                            sx={{ minWidth: 190, width: { xs: "100%", sm: "auto" } }}
+                            sx={{ minWidth: 220, width: { xs: "100%", sm: "auto" } }}
                         />
                     </Stack>
                 </Box>

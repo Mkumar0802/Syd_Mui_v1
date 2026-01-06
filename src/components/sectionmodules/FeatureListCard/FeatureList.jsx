@@ -1,11 +1,12 @@
-// FeatureList.jsx
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import FeatureListCard from "./FeatureListCard";
-import { features } from "../../../data/FeatureList";
+import { features as defaultFeatures } from "../../../data/FeatureList";
 
-const FeatureList = () => {
+const FeatureList = ({ data }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const featuresToDisplay = data || defaultFeatures;
 
   return (
     <Box
@@ -19,7 +20,7 @@ const FeatureList = () => {
         gap: 3,
       }}
     >
-      {features.map((f, index) => {
+      {featuresToDisplay.map((f, index) => {
         const isHovered = hoveredIndex === index;
         const isFirst = index === 0;
 

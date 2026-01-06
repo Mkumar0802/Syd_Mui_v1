@@ -49,8 +49,8 @@ export default function AccordionItem({
               fontFamily: `"Microsoft JhengHei UI", sans-serif`,
               fontWeight: 700,
               fontStyle: "normal",
-              fontSize: { xs: "20px", sm: "24px" }, // responsive size
-              lineHeight: "100%",
+              fontSize: { xs: "18px", sm: "22px", md: "24px" }, // responsive size
+              lineHeight: 1.2,
               letterSpacing: "0%",
               color: "#000",
             }}
@@ -104,8 +104,8 @@ export default function AccordionItem({
               fontFamily: `"Segoe UI", sans-serif`,
               fontWeight: 400,
               fontStyle: "normal",
-              fontSize: { xs: "18px", sm: "20px" },
-              lineHeight: "30px",
+              fontSize: { xs: "15px", sm: "17px", md: "19px" },
+              lineHeight: 1.5,
               letterSpacing: "0%",
               color: "#000",
             }}

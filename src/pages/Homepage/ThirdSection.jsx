@@ -23,7 +23,7 @@ export default function ThirdSection({
     ];
 
     return (
-        <SXContainer>
+        <SXContainer py={{ xs: 8, md: 12 }}>
             <Box
                 sx={{
                     display: "flex",

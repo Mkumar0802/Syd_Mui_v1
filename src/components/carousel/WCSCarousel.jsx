@@ -102,18 +102,39 @@ export default function WCSCarousel({
       }}
     >
 
-      <Container maxWidth={containerWidth} disableGutters>
+      <Container maxWidth={false} disableGutters>
         {/* HEADER */}
-        <Box sx={{ mb: 3 }}>
-          {title && (
-            <Typography sx={{ fontWeight: 700, fontSize: "28px", mb: 1 }}>{title}</Typography>
-          )}
-          {description && (
-            <Typography sx={{ fontSize: "14px", color: "text.secondary" }}>
-              {description}
-            </Typography>
-          )}
-        </Box>
+        {(title || description) && (
+          <Box sx={{ mb: 4, textAlign: { xs: "center", md: "left" } }}>
+            {title && (
+              <Typography
+                sx={{
+                  fontFamily: '"Microsoft JhengHei UI", sans-serif',
+                  fontWeight: 700,
+                  fontSize: { xs: "24px", md: "32px" },
+                  mb: 1.5,
+                  color: "#000000",
+                }}
+              >
+                {title}
+              </Typography>
+            )}
+            {description && (
+              <Typography
+                sx={{
+                  fontFamily: '"Segoe UI", sans-serif',
+                  fontSize: { xs: "15px", md: "17px" },
+                  lineHeight: 1.6,
+                  color: "#000000",
+                  maxWidth: "800px",
+                  mx: { xs: "auto", md: 0 },
+                }}
+              >
+                {description}
+              </Typography>
+            )}
+          </Box>
+        )}
 
         {/* TRACK */}
         <Box
@@ -123,7 +144,8 @@ export default function WCSCarousel({
             overflowX: "auto",
             scrollSnapType: "x mandatory",
             WebkitOverflowScrolling: "touch",
-            gap: 3,
+            gap: { xs: 2.5, md: 3 },
+            pb: 2,
             "&::-webkit-scrollbar": { display: "none" },
           }}
         >
@@ -134,106 +156,58 @@ export default function WCSCarousel({
                 flex: `0 0 ${slideWidthPct}`,
                 scrollSnapAlign: "start",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "stretch",
-                boxSizing: "border-box",
               }}
             >
-              <Box sx={{ width: "100%" }}>
-                <CSCard
-                  image={item.image}
-                  title={item.h3 || item.title}
-                  description={item.body || item.description}
-                  ctaLabel={item.ctaLabel}
-                  onCta={() => {
-                    if (typeof item.onClick === "function") {
-                      item.onClick(item);
-                    } else if (item.href) {
-                      window.open(item.href, "_blank", "noopener");
-                    } else {
-                      console.log("CSCard CTA clicked:", item.id ?? item.title);
-                    }
-                  }}
-                  sx={{ width: "100%" }}
-                />
-              </Box>
+              <CSCard
+                image={item.image}
+                title={item.h3 || item.title}
+                description={item.body || item.description}
+                ctaLabel={item.ctaLabel}
+                onCta={() => {
+                  if (typeof item.onClick === "function") {
+                    item.onClick(item);
+                  } else if (item.href) {
+                    window.open(item.href, "_blank", "noopener");
+                  } else {
+                    console.log("CSCard CTA clicked:", item.id ?? item.title);
+                  }
+                }}
+                sx={{ width: "100%" }}
+              />
             </Box>
           ))}
         </Box>
 
-        {/* BOTTOM CONTROLS - Dots centered, navigation on right */}
-        <Box sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-
-          position: "relative" // Added for absolute centering
-        }}>
-          {/* DOTS - Centered absolutely */}
-          {/* <Box sx={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
+        {/* BOTTOM NAVIGATION */}
+        <Box
+          sx={{
             display: "flex",
-            gap: 1.5
-          }}>
-            {Array.from({ length: Math.max(1, lastIndex + 1) }).map((_, idx) => (
-              <Box
-                key={idx}
-                onClick={() => scrollToIndex(idx)}
-                sx={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  bgcolor: currentIndex === idx ? "primary.main" : "divider",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s ease",
-                  "&:hover": {
-                    bgcolor: currentIndex === idx ? "primary.dark" : "action.hover",
-                  },
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") scrollToIndex(idx);
-                }}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </Box> */}
-
-
-          {/* NAVIGATION BUTTONS - Always visible */}
-          <Box
-            sx={{
-              display: "flex",
-              gap: 2,
-              ml: "auto",
-            }}
-          >
-            {/* LEFT ARROW — always active, no dimming */}
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ display: "flex", gap: 2 }}>
             <ArrowButton
               direction="left"
               onClick={handlePrev}
-              data-gesture="16S"
               sx={{
                 bgcolor: "#8A38F5",
-                opacity: 1,
+                color: "white",
+                "&:hover": { bgcolor: "#7a2ee3" },
               }}
             />
 
-            {/* RIGHT ARROW — always active, no dimming */}
             <ArrowButton
               direction="right"
               onClick={handleNext}
-              data-gesture="16S"
               sx={{
                 bgcolor: "#8A38F5",
-                opacity: 1,
+                color: "white",
+                "&:hover": { bgcolor: "#7a2ee3" },
               }}
             />
           </Box>
-
         </Box>
       </Container>
     </Box>

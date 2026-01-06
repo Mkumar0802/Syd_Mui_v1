@@ -99,24 +99,22 @@ export default function CSCarousel({
   const slideWidthPct = `${100 / visibleCount}%`;
 
   return (
-    <Box component="section" sx={{ width: "100%", position: "relative"}}>
+    <Box component="section" sx={{ width: "100%", position: "relative" }}>
 
       {title && (
         <Typography
           sx={{
             color: "#000000",
             textAlign: { xs: "center", sm: "left" },
-            wordBreak: "break-word",
-            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
+            fontFamily: '"Microsoft JhengHei UI", sans-serif',
             fontWeight: 500,
             fontSize: {
-              xs: "28px",
+              xs: "24px",
               sm: "28px",
               md: "32px",
-              lg: "32px",
             },
-            lineHeight: "100%",
-            letterSpacing: "0px",
+            lineHeight: 1.2,
+            mb: 1.5,
           }}>
           {title}
         </Typography>
@@ -124,37 +122,24 @@ export default function CSCarousel({
 
       {/* DESCRIPTION */}
       {description && (
-        Array.isArray(description) ? (
-          <Box sx={{ mb: 3, mt: 1 }}>
-            {description.map((line, i) => (
-              <Typography key={i} sx={{ color: "text.primary", mb: i < description.length - 1 ? 0.5 : 0 }}>
-                {line}
-              </Typography>
-            ))}
-          </Box>
-        ) : (
-          <Typography
-            sx={{
-
-              mb: 3,
-              fontFamily: `"Segoe UI", sans-serif`,
-              fontWeight: 400,
-              fontStyle: "normal",
-              fontSize: { xs: "14px", sm: "15px", md: "17px" },
-              lineHeight: { xs: "20px", sm: "21px", md: "29px" },
-              letterSpacing: "0%",
-              whiteSpace: "pre-line",
-              color: "#000000ff",
-
-            }}
-          >
-            {description}
-          </Typography>
-
-        )
+        <Typography
+          sx={{
+            mb: 4,
+            fontFamily: '"Segoe UI", sans-serif',
+            fontWeight: 400,
+            fontSize: { xs: "15px", md: "17px" },
+            lineHeight: 1.6,
+            color: "#000000",
+            maxWidth: "800px",
+            textAlign: { xs: "center", sm: "left" },
+            mx: { xs: "auto", sm: 0 },
+          }}
+        >
+          {Array.isArray(description) ? description.join(" ") : description}
+        </Typography>
       )}
 
-      {/* TRACK */}
+      {/* TRACK AREA - with padding for card shadows/borders */}
       <Box
         ref={trackRef}
         sx={{
@@ -162,9 +147,9 @@ export default function CSCarousel({
           overflowX: "auto",
           scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
-          gap: 3,
-          px: 0,
-          "&::-webkit-scrollbar": { height: 8, display: "none" },
+          gap: { xs: 2, md: 3 },
+          pb: 2, // space for shadows if any
+          "&::-webkit-scrollbar": { display: "none" },
         }}
       >
         {items.map((it) => (
@@ -174,8 +159,6 @@ export default function CSCarousel({
               flex: `0 0 ${slideWidthPct}`,
               scrollSnapAlign: "start",
               display: "flex",
-              p: 0,
-              boxSizing: "border-box",
               alignItems: "stretch",
             }}
           >
@@ -192,33 +175,43 @@ export default function CSCarousel({
       </Box>
 
       {/* Bottom Controls */}
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: { xs: 2, md: 4 } }}>
-        <Box>
-          <ButtonPE label="Explore what we do" onClick={() => console.log("Explore CTA clicked")} />
-        </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+          justifyContent: "space-between",
+          mt: 4,
+          gap: 3
+        }}
+      >
+        <ButtonPE
+          label="Explore what we do"
+          onClick={() => console.log("Explore CTA clicked")}
+          sx={{ width: { xs: "100%", sm: "auto" } }}
+        />
 
         <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
           <ArrowButton
             direction="left"
             onClick={handlePrev}
-            data-gesture="16S"
             sx={{
               bgcolor: "#8A38F5",
-              opacity: 1,
+              color: "white",
+              "&:hover": { bgcolor: "#7a2ee3" }
             }}
           />
 
           <ArrowButton
             direction="right"
             onClick={handleNext}
-            data-gesture="16S"
             sx={{
               bgcolor: "#8A38F5",
-              opacity: 1,
+              color: "white",
+              "&:hover": { bgcolor: "#7a2ee3" }
             }}
           />
         </Box>
-
       </Box>
 
     </Box>

@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import AppLayout from "./layout/AppLayout";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import Whoweare from "./pages/WhoWeAre/Whoweare";
+import SapPartnerEdge from "./pages/SapPartnerEdge/SapPartnerEdge";
 
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
           <Route path="/our-team" element={<PlaceholderPage title="Our Team" />} />
           <Route path="/consultant-opportunities" element={<PlaceholderPage title="Consultant Opportunities" />} />
           <Route path="/job-opportunities" element={<PlaceholderPage title="Job Opportunities" />} />
-          <Route path="/sap-partner-edge" element={<PlaceholderPage title="SAP PartnerEdge" />} />
+          <Route path="/sap-partner-edge" element={<SapPartnerEdge />} />
 
           {/* What we do */}
           <Route path="/what" element={<PlaceholderPage title="What We Do" />} />

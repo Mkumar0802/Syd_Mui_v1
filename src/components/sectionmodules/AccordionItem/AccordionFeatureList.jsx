@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import AccordionItem from "./AccordionItem";
-import { accordionItems } from "../../../data/AccordionItem";
+import { accordionItems as defaultAccordionItems } from "../../../data/AccordionItem";
 
-export default function AccordionFeatureList() {
+export default function AccordionFeatureList({ data }) {
+  const itemsToDisplay = data || defaultAccordionItems;
   // first item open by default
-  const [openId, setOpenId] = useState(accordionItems[0]?.id || null);
+  const [openId, setOpenId] = useState(itemsToDisplay[0]?.id || null);
 
   return (
     <Box
@@ -16,12 +17,11 @@ export default function AccordionFeatureList() {
         p: 0,
         m: 0,
         borderTop: "0.5px solid #000000",
-        // responsive content width (centered by container)
+        // fill container
         width: "100%",
-        maxWidth: { xs: "95%", sm: 720, md: 900 },
       }}
     >
-      {accordionItems.map((item) => (
+      {itemsToDisplay.map((item) => (
         <AccordionItem
           key={item.id}
           id={item.id}

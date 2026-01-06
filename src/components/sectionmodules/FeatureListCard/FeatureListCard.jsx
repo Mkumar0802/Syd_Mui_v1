@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FeatureIcon from "../../buttons/FeatureIcon";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const FeatureListCard = React.memo(function FeatureListCard({
     title,
@@ -14,7 +14,7 @@ const FeatureListCard = React.memo(function FeatureListCard({
             className="feature-card"
             sx={{
                 display: "flex",
-                alignItems: "flex-start",
+                alignItems: "center",
                 gap: 2,
                 p: 2,
                 backgroundColor: "transparent", // always transparent
@@ -26,24 +26,37 @@ const FeatureListCard = React.memo(function FeatureListCard({
             <FeatureIcon
                 size={24}
                 padding={3}
+
                 bgColor={isActive ? "#8A38F5" : "#E0E0E0"}
             />
 
             <Box sx={{ flex: 1 }}>
-                {/* Title stays same color always */}
-                <h4
-                    style={{
-                        margin: "0 0 8px 0",
-                        color: "#000000", // fixed color
+                <Typography
+                    variant="h6"
+                    sx={{
+                        fontFamily: '"Microsoft JhengHei UI", sans-serif',
+                        fontWeight: 700,
+                        fontSize: { xs: '18px', sm: '20px', md: '22px' },
+                        lineHeight: 1.2,
+                        mb: 1,
+                        color: "#000000",
                     }}
                 >
                     {title}
-                </h4>
+                </Typography>
 
-                {/* Subtitle stays same color always */}
-                <p style={{ margin: 0, color: "#000000" }}>
+                <Typography
+                    variant="body2"
+                    sx={{
+                        fontFamily: '"Segoe UI", sans-serif',
+                        fontWeight: 400,
+                        fontSize: { xs: '14px', sm: '15px', md: '16px' },
+                        lineHeight: 1.5,
+                        color: "#000000",
+                    }}
+                >
                     {subtitle}
-                </p>
+                </Typography>
             </Box>
         </Box>
     );
