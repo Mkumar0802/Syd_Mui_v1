@@ -1,0 +1,61 @@
+/* FeatureGrid.css */
+
+.feature-grid-section {
+  width: 100%;
+  padding: 0;
+}
+
+.feature-grid-title {
+  font-family: "Microsoft JhengHei UI", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  color: #000000;
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.feature-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: stretch;
+  padding: 0 16px;
+}
+
+.feature-grid-item {
+  display: flex;
+  width: 100%;
+}
+
+/* Tablet: 600px - 899px */
+@media (min-width: 600px) {
+  .feature-grid-title {
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 24px;
+    padding: 0 24px;
+  }
+
+  .feature-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 24px;
+  }
+}
+
+/* Desktop: 900px and above */
+@media (min-width: 900px) {
+  .feature-grid-title {
+    font-size: 32px;
+    line-height: 45px;
+    margin-bottom: 32px;
+    padding: 0;
+  }
+
+  .feature-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 0;
+  }
+}

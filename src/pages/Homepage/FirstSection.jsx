@@ -1,12 +1,12 @@
 // src/components/hero/FirstSection.jsx
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Stack } from "@mui/material";
 import ButtonPE from "../../components/buttons/ButtonPE";
 import SXContainer from "../../layout/SXContainer.jsx";
 import heroImg from "../../assets/home/SYD_homepaged_hero_banner_Auckland1.jpg";
 
-function FirstSection({
+const FirstSection = memo(function FirstSection({
     background = heroImg,
     overlayImage = null,
     label = "",
@@ -30,8 +30,9 @@ function FirstSection({
             sx={{
                 width: "100%",
                 position: "relative",
-                minHeight: { xs: "500px", sm: "600px", md: "700px", lg: "800px" },
-                height: "auto",
+                height: "100vh",
+                minHeight: { xs: "500px", sm: "600px" },
+                maxHeight: "1080px",
                 display: "flex",
                 alignItems: "center",
                 backgroundImage: `url(${background})`,
@@ -160,7 +161,7 @@ function FirstSection({
             </SXContainer>
         </Box>
     );
-}
+});
 
 FirstSection.propTypes = {
     background: PropTypes.string,

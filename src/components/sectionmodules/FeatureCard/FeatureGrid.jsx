@@ -1,18 +1,17 @@
 // FeatureGrid.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Box } from "@mui/material";
 import FeatureCard from "./FeatureCard";
 import SXContainer from "../../../layout/SXContainer";
-import { Typography } from "@mui/material";
+import "./FeatureGrid.css";
 
 /**
- * FeatureGrid - Responsive grid with tablet full-width alignment
+ * FeatureGrid - Fully responsive grid with fluid layout (No MUI)
  * 
  * Breakpoints:
  *  - xs:   <600px  (mobile) - 1 column, full width
- *  - sm:   600-899px (tablet) - 1 column, full width
- *  - md+:  >=900px  (laptop & large) - 3 columns, fixed width
+ *  - sm:   600-899px (tablet) - 2 columns
+ *  - md+:  >=900px  (laptop & large) - 3 columns
  */
 export default function FeatureGrid({
   items = [],
@@ -22,88 +21,25 @@ export default function FeatureGrid({
   containerSx = {},
 }) {
   return (
-    <Box
-      component="section"
-      sx={{
-        width: "100%",
-        p: 0, // 🔴 removes all container padding
-      }}
-    >
-<SXContainer
-  disableGutters
-  py={0}        // 🔴 THIS removes top & bottom padding
-  sx={{ p: 0 }} // optional safety, but fine
->
-
-        <Typography
-          sx={{
-            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-            fontWeight: 700,
-            fontSize: {
-              xs: "clamp(24px, 6vw, 28px)",
-              sm: "clamp(26px, 5vw, 30px)",
-              md: "32px",
-            },
-            color: "#111",
-            mb: { xs: 2, sm: 3 },
-          }}
-        >
+    <section className="feature-grid-section">
+      <SXContainer
+        disableGutters
+        py={0}
+        sx={{ p: 0 }}
+      >
+        <h2 className="feature-grid-title">
           Our Track Record
-        </Typography>
-        <Grid
-          container
-          spacing={spacing}
-          sx={{
-            alignItems: "stretch",
-          }}
-        >
+        </h2>
+
+        <div className="feature-grid-container">
           {items.map((text, idx) => (
-            <Grid
-              key={idx}
-              item
-              xs={12}    // Full width on mobile (<600px)
-              sm={12}    // Full width on tablet (600-899px) - CHANGED FROM 6 TO 12
-              md={4}     // 3 columns on desktop (>=900px)
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                <FeatureCard
-                  text={text}
-                  width={{
-                    xs: "100%",      // Full width on mobile
-                    sm: "100%",      // Full width on tablet - CHANGED
-                    md: cardWidth    // Fixed width on desktop
-                  }}
-                  height={{
-                    xs: cardHeight,
-                    sm: cardHeight,
-                    md: cardHeight
-                  }}
-                  sx={{
-                    flexGrow: 1,
-                    height: "100%",
-                    minHeight: {
-                      xs: 120,
-                      sm: cardHeight,
-                      md: cardHeight
-                    },
-                    // Tablet-specific styling
-                    maxWidth: {
-                      xs: "100%",
-                      sm: "100%",    // Full width on tablet
-                      md: cardWidth  // Fixed width on desktop
-                    },
-                  }}
-                />
-              </Box>
-            </Grid>
+            <div key={idx} className="feature-grid-item">
+              <FeatureCard text={text} />
+            </div>
           ))}
-        </Grid>
+        </div>
       </SXContainer>
-    </Box>
+    </section>
   );
 }
 

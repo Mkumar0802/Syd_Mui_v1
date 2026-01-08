@@ -1,12 +1,12 @@
 // src/components/carousel/WCSCarousel.jsx
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Container } from "@mui/material";
 import ArrowButton from "../buttons/NavigationLR";
 
 import CSCard from "../cards/CSCard/CSCard";
 
-export default function WCSCarousel({
+const WCSCarousel = memo(function WCSCarousel({
   items = [],
   title,
   description,
@@ -41,7 +41,7 @@ export default function WCSCarousel({
     return () => window.removeEventListener("resize", updateLayout);
   }, [updateLayout]);
 
-  const scrollToIndex = (index) => {
+  const scrollToIndex = useCallback((index) => {
     if (!trackRef.current) return;
     const track = trackRef.current;
     const clamped = Math.max(0, Math.min(index, lastIndex));
@@ -53,10 +53,10 @@ export default function WCSCarousel({
 
     track.scrollTo({ left, behavior: "smooth" });
     setCurrentIndex(clamped);
-  };
+  }, [lastIndex, slideWidthPx]);
 
-  const handleNext = () => scrollToIndex(currentIndex + 1);
-  const handlePrev = () => scrollToIndex(currentIndex - 1);
+  const handleNext = useCallback(() => scrollToIndex(currentIndex + 1), [currentIndex, scrollToIndex]);
+  const handlePrev = useCallback(() => scrollToIndex(currentIndex - 1), [currentIndex, scrollToIndex]);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -87,7 +87,7 @@ export default function WCSCarousel({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [currentIndex, lastIndex, slideWidthPx]);
+  }, [handlePrev, handleNext]);
 
   const slideWidthPct = `${100 / visibleCount}%`;
 
@@ -212,7 +212,7 @@ export default function WCSCarousel({
       </Container>
     </Box>
   );
-}
+});
 
 WCSCarousel.propTypes = {
   items: PropTypes.array.isRequired,
@@ -227,3 +227,5 @@ WCSCarousel.defaultProps = {
   description: undefined,
   containerWidth: "lg",
 };
+
+export default WCSCarousel;

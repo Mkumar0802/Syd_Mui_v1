@@ -19,9 +19,35 @@ import SecondSection from "./SectionTwo.jsx";
 import SXContainer from "../../layout/SXContainer.jsx";
 import SectionEight from "./SectionEight.jsx";
 
+// Consistent typography styles
+const titleStyle = {
+    fontFamily: '"Microsoft JhengHei UI", sans-serif',
+    fontWeight: 500,
+    fontSize: { xs: '22px', sm: '26px', md: '32px' },
+    lineHeight: { xs: '30px', sm: '36px', md: '45px' },
+    letterSpacing: '0%',
+    mb: { xs: 2.5, md: 4 },
+    color: '#000000',
+};
+
+const paragraphStyle = {
+    fontFamily: '"Segoe UI", sans-serif',
+    fontWeight: 400,
+    fontSize: { xs: '15px', sm: '17px', md: '20px' },
+    lineHeight: { xs: '22px', sm: '25px', md: '29px' },
+    letterSpacing: '0%',
+    color: '#000000',
+};
+
+// Consistent section spacing - reduced for more compact layout
+const sectionSpacing = {
+    py: { xs: 4, sm: 5, md: 6 }
+};
+
 export default function WhyChooseUs() {
     return (
         <main>
+            {/* Hero Section */}
             <HeroSection
                 background={heroImg}
                 eyebrow="WHY CHOOSE US"
@@ -29,87 +55,73 @@ export default function WhyChooseUs() {
                 layout={{ height: "auto" }}
             />
 
+            {/* Section Two - Big-firm capability */}
+            <Box component="section" sx={{ pt: { xs: 4, sm: 5, md: 4 }, pb: { xs: 4, sm: 5, md: 4 }, backgroundColor: "#FFFFFF" }}>
+                <SecondSection />
+            </Box>
 
-            <SecondSection />
+            {/* Feature Grid Section */}
+            <Box component="section" sx={{ pt: { xs: 2, sm: 2, md: 3 }, pb: { xs: 4, sm: 5, md: 4 } }}>
+                <FeatureGridSection items={featureItems} gap={3} />
+            </Box>
 
-
-
-
-
-
-            <FeatureGridSection items={featureItems} gap={3} />
-            <HeroSection
-                background={section3}
-                eyebrow="WHAT WE STAND FOR"
-                title={["Our values aren’t just words on a wall."]}
-                caption={`They guide how we work, how we solve problems,
+            {/* What We Stand For Hero */}
+            <Box component="section" sx={{ py: { xs: 4, sm: 5, md: 4 } }}>
+                <HeroSection
+                    background={section3}
+                    eyebrow="WHAT WE STAND FOR"
+                    title={["Our values aren't just words on a wall."]}
+                    caption={`They guide how we work, how we solve problems,
 and how we show up for our clients every day.`}
-                layout={{ width: 1451, height: "auto" }}
-            />
+                    layout={{ width: 1451, height: "auto" }}
+                />
+            </Box>
 
+            {/* FH Cards Grid */}
+            <Box component="section" sx={{ py: { xs: 4, sm: 5, md: 4 } }}>
+                <FHGrid items={FHCards} />
+            </Box>
 
-
-
-            <FHGrid items={FHCards} />
-
-
-
+            {/* Feature Grid with CTA */}
             <Box
                 component="section"
                 sx={{
-
+                    py: { xs: 4, sm: 5, md: 4 },
                     width: "100%",
-                    mb: 8,
-
                 }}
             >
-
                 <FeatureGrid items={features} />
 
-                <Typography
-                    sx={{
-                        fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                        fontWeight: 700,
-                        textAlign: "center",
-                        paddingTop: "2em",
-                        fontSize: {
-                            xs: "clamp(24px, 6vw, 28px)",
-                            sm: "clamp(26px, 5vw, 30px)",
-                            md: "24px",
-                        },
-                    }}
-                >
-                    Our Work → See how we've helped businesses like yours
-                </Typography>
-
-
+                <SXContainer>
+                    <Typography
+                        sx={{
+                            ...titleStyle,
+                            textAlign: "center",
+                            mt: { xs: 3, sm: 4, md: 5 },
+                            mb: 0,
+                            px: { xs: 2, sm: 3, md: 0 },
+                        }}
+                    >
+                        Our Work → See how we've helped businesses like yours
+                    </Typography>
+                </SXContainer>
             </Box>
 
-
-
-            {/* Title: left-aligned inside the content column */}
-
-
-            {/* Testimonial band — title above carousel, no overlay */}
+            {/* Testimonial Section */}
             <Box
                 component="section"
                 sx={{
                     backgroundColor: "#F2F2F2",
                     width: "100%",
-                    py: { xs: 4, sm: 6, md: 8 },
-
+                    py: { xs: 4, sm: 5, md: 4 },
                 }}
             >
                 <SXContainer>
                     <Typography
                         sx={{
-                            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                            fontWeight: 700,
-                            fontSize: { xs: "clamp(20px, 5.5vw, 26px)", sm: "clamp(24px,4.5vw,30px)", md: "32px" },
-                            lineHeight: "100%",
-                            letterSpacing: "0px",
-                            color: "#111",
+                            ...titleStyle,
                             textAlign: "left",
+                            mb: { xs: 2, sm: 3, md: 4 },
                         }}
                     >
                         Trusted by Leading Kiwi Brands
@@ -119,17 +131,15 @@ and how we show up for our clients every day.`}
                 <Box
                     sx={{
                         width: "100%",
-                        maxWidth: { xs: "100%", sm: 920, md: 1100 }, // container width for content
+                        maxWidth: { xs: "100%", sm: 920, md: 1100 },
                         mx: "auto",
-                        px: { xs: 2, sm: 3, md: 0 },
+                        px: { xs: 2, sm: 3, md: 4 },
                         display: "flex",
                         flexDirection: "column",
-                        gap: { xs: 2, sm: 3 }, // space between title and carousel
+                        gap: { xs: 2, sm: 3 },
                     }}
                 >
-
-
-                    {/* Carousel block (centered inside the content area) */}
+                    {/* Carousel block */}
                     <Box
                         sx={{
                             width: "100%",
@@ -144,28 +154,10 @@ and how we show up for our clients every day.`}
                 </Box>
             </Box>
 
-
-
-
-            <SectionEight />
-
-            {/* SectionOne — kept but hidden (you can toggle display via prop or remove) */}
-            {/* <Box sx={{ display: "none", mt: 10 }}>
-                <SectionOne
-                    title="Why Business Choose SYD"
-                    body1={`SYD Consulting is a New Zealand SAP specialist providing technical consulting,
-            implementation, and support services. As a trusted SAP Partner and founded to
-            make SAP simple for local businesses, we combine deep technical expertise in SAP Basis,
-            authorisations, S/4HANA, and cloud solutions with a straightforward, human approach to
-            delivering business outcomes.`}
-                    body2={`We blend the rigour of enterprise consulting with the flexibility and speed of a Kiwi operator.
-            No bureaucracy. No jargon. Just reliable expertise and practical delivery that gets the job done,
-            trusted by leading enterprises across infrastructure, retail, utilities, and agriculture sectors
-            throughout New Zealand.`}
-                    buttonLabel="Explore what we do"
-                    onButtonClick={() => console.log("Explore what we do clicked")}
-                />
-            </Box> */}
+            {/* Section Eight - CTA */}
+            <Box component="section" sx={{ py: { xs: 4, sm: 5, md: 4 } }}>
+                <SectionEight />
+            </Box>
         </main>
     );
 }

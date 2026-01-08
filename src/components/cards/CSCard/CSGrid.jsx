@@ -42,7 +42,7 @@ export default function CSGrid({ items = [], title, containerWidth = "lg" }) {
                         <Box
                             key={it.id}
                             sx={{
-                                flex: "0 0 calc((100% / 3.2))",  
+                                flex: "0 0 calc((100% / 3.2))",
                                 /* 
                                    3.2 = 3 full cards + 0.2 of the next card
                                    (0.2 = 20% preview card)

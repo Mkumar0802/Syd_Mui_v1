@@ -3,6 +3,25 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import SXContainer from "../../layout/SXContainer.jsx";
 
+// Consistent typography styles
+const titleStyle = {
+    fontFamily: '"Microsoft JhengHei UI", sans-serif',
+    fontWeight: 500,
+    fontSize: { xs: '22px', sm: '26px', md: '32px' },
+    lineHeight: { xs: '30px', sm: '36px', md: '45px' },
+    letterSpacing: '0%',
+    color: '#000000',
+};
+
+const paragraphStyle = {
+    fontFamily: '"Segoe UI", sans-serif',
+    fontWeight: 400,
+    fontSize: { xs: '15px', sm: '17px', md: '20px' },
+    lineHeight: { xs: '22px', sm: '25px', md: '29px' },
+    letterSpacing: '0%',
+    color: '#000000',
+};
+
 function SectionTwo() {
     return (
         <Box
@@ -21,37 +40,19 @@ function SectionTwo() {
                     {/* TITLE */}
                     <Typography
                         sx={{
-                            fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                            fontWeight: 700,
-                            fontSize: {
-                                xs: "clamp(24px, 6vw, 28px)",
-                                sm: "clamp(26px, 5vw, 30px)",
-                                md: "32px",
-                            },
-                            lineHeight: "100%",
-                            letterSpacing: "0px",
-                            color: "#111",
-                            mb: { xs: 2, sm: 3 },
+                            ...titleStyle,
+                            mb: { xs: 2, sm: 3, md: 4 },
                         }}
                     >
                         Big-firm capability.
                         Local agility.
                     </Typography>
 
-                    {/* PARAGRAPH — NO MAX WIDTH */}
+                    {/* PARAGRAPH */}
                     <Typography
                         sx={{
-                            fontFamily: `"Segoe UI", sans-serif`,
-                            fontWeight: 400,
-                            fontSize: {
-                                xs: "clamp(16px, 4vw, 18px)",
-                                sm: "clamp(18px, 3vw, 19px)",
-                                md: "20px",
-                            },
-                            lineHeight: "28px",
-                            letterSpacing: "0px",
-                            color: "#333",
-                            width: "100%", // Full width
+                            ...paragraphStyle,
+                            width: "100%",
                             textAlign: "left",
                         }}
                     >
@@ -66,18 +67,9 @@ function SectionTwo() {
 
                 <Typography
                     sx={{
-                        fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                        fontWeight: 700,
-                        fontSize: {
-                            xs: "clamp(24px, 6vw, 28px)",
-                            sm: "clamp(26px, 5vw, 30px)",
-                            md: "32px",
-                        },
-                        lineHeight: "100%",
-                        letterSpacing: "0px",
-                        color: "#111",
-                        mb: { xs: 2, sm: 3 },
-                        paddingTop: "2em",
+                        ...titleStyle,
+                        mt: { xs: 4, sm: 5, md: 6 },
+                        mb: { xs: 2, sm: 3, md: 4 },
                     }}
                 >
                     Our Promise
@@ -153,7 +145,7 @@ function SectionTwo() {
                                 },
                                 lineHeight: { xs: "26px", sm: "28px", md: "32px" },
                                 letterSpacing: "0px",
-                                color: "#333",
+                                color: "#000000",
                                 textAlign: "left",
                                 px: { xs: "2.5rem", sm: "3.5rem", md: "5rem" },
                             }}

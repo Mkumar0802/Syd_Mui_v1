@@ -1,16 +1,29 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
+import ErrorBoundary from "../components/ErrorBoundary";
+import LoadingFallback from "../components/LoadingFallback";
 
 const MainLayout = () => {
   return (
     <Box>
-      <Header />
+      <ErrorBoundary>
+        <Header />
+      </ErrorBoundary>
+
       <Box component="main">
-        <Outlet />
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingFallback message="Loading page..." />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </Box>
-      <Footer />
+
+      <ErrorBoundary>
+        <Footer />
+      </ErrorBoundary>
     </Box>
   );
 };

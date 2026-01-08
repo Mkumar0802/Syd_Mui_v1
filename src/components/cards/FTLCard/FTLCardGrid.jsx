@@ -19,7 +19,7 @@ export default function FTLCardGrid({
                     variant="h4"
                     sx={{
                         fontWeight: 700,
-                        mb: 4,
+                        mb: { xs: 3, md: 4 },
                         ...titleSx,
                     }}
                 >
@@ -27,9 +27,19 @@ export default function FTLCardGrid({
                 </Typography>
             )}
 
-            <Grid container spacing={6}>
+            <Grid
+                container
+                spacing={4}
+                sx={{
+                    justifyContent: 'space-between',
+                    '& .MuiGrid-item': {
+                        display: 'flex',
+                        justifyContent: { xs: 'flex-start', sm: 'center' }
+                    }
+                }}
+            >
                 {items.map((item) => (
-                    <Grid key={item.id} item xs={12} sm={6} md={3}>
+                    <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
                         <FTLCard
                             icon={item.icon}
                             title={item.title}

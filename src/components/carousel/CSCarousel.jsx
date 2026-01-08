@@ -1,12 +1,12 @@
 // src/components/carousel/CSCarousel.jsx
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect, useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
 import CSCard from "../cards/CSCard/CSCard";
 import ArrowButton from "../buttons/NavigationLR";
 import ButtonPE from "../buttons/ButtonPE";
 
-export default function CSCarousel({
+const CSCarousel = memo(function CSCarousel({
   items = [],
   title,
   description,
@@ -44,7 +44,7 @@ export default function CSCarousel({
     return () => window.removeEventListener("resize", updateLayout);
   }, [updateLayout]);
 
-  const scrollToIndex = (index) => {
+  const scrollToIndex = useCallback((index) => {
     if (!trackRef.current) return;
     const track = trackRef.current;
     const clamped = Math.max(0, Math.min(index, lastIndex));
@@ -58,10 +58,10 @@ export default function CSCarousel({
 
     track.scrollTo({ left, behavior: "smooth" });
     setCurrentIndex(clamped);
-  };
+  }, [lastIndex, slideWidthPx]);
 
-  const handleNext = () => scrollToIndex(currentIndex + 1);
-  const handlePrev = () => scrollToIndex(currentIndex - 1);
+  const handleNext = useCallback(() => scrollToIndex(currentIndex + 1), [currentIndex, scrollToIndex]);
+  const handlePrev = useCallback(() => scrollToIndex(currentIndex - 1), [currentIndex, scrollToIndex]);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -94,7 +94,7 @@ export default function CSCarousel({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  });
+  }, [handlePrev, handleNext]);
 
   const slideWidthPct = `${100 / visibleCount}%`;
 
@@ -216,7 +216,7 @@ export default function CSCarousel({
 
     </Box>
   );
-}
+});
 
 CSCarousel.propTypes = {
   items: PropTypes.array.isRequired,
@@ -227,3 +227,5 @@ CSCarousel.propTypes = {
   ]),
   containerWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
+
+export default CSCarousel;

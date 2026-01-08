@@ -27,7 +27,7 @@ export default function HeroWithDots({
       sx={{
         width: "100%",
         position: "relative",
-        minHeight: { xs: "80vh", sm: "85vh", md: "90vh", lg: "100vh" },
+        height: "100vh",
         display: "flex",
         alignItems: "center",
         backgroundImage: background ? `url(${background})` : "none",
@@ -98,14 +98,14 @@ export default function HeroWithDots({
                 sx={{
                   color: "#FFFFFF",
                   fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: {
                     xs: line.length > 20 ? "24px" : "28px", // Scale down if line is too long
                     sm: "36px",
-                    md: "48px",
-                    lg: "56px",
+                    md: "42px",
+                    lg: "48px",
                   },
-                  lineHeight: { xs: "1.2", sm: "1.1", md: "100%" },
+                  lineHeight: { xs: "1.2", sm: "1.1", md: "1.4" },
                   wordBreak: "break-word",
                   textAlign: { xs: "center", sm: "left" },
                 }}

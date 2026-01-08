@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Box, Card, CardMedia, CardContent, Typography, Link } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-export default function CSCard({
+const CSCard = memo(function CSCard({
     image,
     title,
     description,
@@ -132,7 +132,7 @@ export default function CSCard({
             </CardContent>
         </Card>
     );
-}
+});
 
 CSCard.propTypes = {
     image: PropTypes.string.isRequired,
@@ -147,3 +147,5 @@ CSCard.defaultProps = {
     // ctaLabel: "Discover →",
     onCta: () => { },
 };
+
+export default CSCard;

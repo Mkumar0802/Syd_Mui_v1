@@ -25,7 +25,7 @@ export default function FeatureGridSection({
         <Typography
           sx={{
             fontFamily: `"Microsoft JhengHei UI", sans-serif`,
-            fontWeight: 700,
+            fontWeight: 500,
             fontSize: {
               xs: "clamp(24px, 6vw, 28px)",
               sm: "clamp(26px, 5vw, 30px)",

@@ -1,0 +1,71 @@
+/* FeatureCard.css */
+
+.feature-card {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    max-width: 100%;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.feature-card-text {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 22px;
+    color: #000000;
+    overflow: visible;
+    display: block;
+    width: 100%;
+    word-break: break-word;
+    white-space: normal;
+    margin: 0;
+}
+
+/* Tablet: 600px - 899px */
+@media (min-width: 600px) {
+    .feature-card {
+        min-height: 120px;
+        padding: 24px;
+    }
+
+    .feature-card-text {
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 25px;
+    }
+}
+
+/* Desktop: 900px and above */
+@media (min-width: 900px) {
+    .feature-card {
+        min-height: 140px;
+        padding: 28px;
+    }
+
+    .feature-card-text {
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 26px;
+    }
+}
+
+/* Large Desktop: 1200px and above */
+@media (min-width: 1200px) {
+    .feature-card {
+        padding: 32px;
+    }
+
+    .feature-card-text {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

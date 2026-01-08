@@ -16,7 +16,7 @@ export default function FTLCard({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                maxWidth: 280,
+                maxWidth: 320,
                 gap: 1.5,
                 ...sx,
             }}

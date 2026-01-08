@@ -53,7 +53,7 @@ export default function FeatureGridCard({
             fontFamily: `"Segoe UI", sans-serif`,
             fontSize: "14px",
             lineHeight: "20px",
-            color: "#666",
+            color: "#000000",
           }}
         >
           {body}

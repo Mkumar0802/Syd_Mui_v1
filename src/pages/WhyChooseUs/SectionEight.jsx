@@ -1,14 +1,32 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import SXContainer from "../../layout/SXContainer"; // adjust path if needed
+import SXContainer from "../../layout/SXContainer";
 import ButtonPE from "../../components/buttons/ButtonPE";
+
+// Consistent typography styles
+const titleStyle = {
+    fontFamily: '"Microsoft JhengHei UI", sans-serif',
+    fontWeight: 500,
+    fontSize: { xs: '22px', sm: '26px', md: '32px' },
+    lineHeight: { xs: '30px', sm: '36px', md: '45px' },
+    letterSpacing: '0%',
+    color: '#000000',
+};
+
+const paragraphStyle = {
+    fontFamily: '"Segoe UI", sans-serif',
+    fontWeight: 400,
+    fontSize: { xs: '15px', sm: '17px', md: '20px' },
+    lineHeight: { xs: '22px', sm: '25px', md: '29px' },
+    letterSpacing: '0%',
+    color: '#000000',
+};
 
 const SectionEight = () => {
     return (
         <Box sx={{ bgcolor: "background.default" }}>
             <SXContainer
                 maxWidth="xl"
-                py={{ xs: 10, md: 14, lg: 28 }} // replaces Box py + Container
             >
                 <Box
                     sx={{
@@ -16,25 +34,24 @@ const SectionEight = () => {
                         flexDirection: { xs: "column", md: "row" },
                         justifyContent: "space-between",
                         alignItems: "flex-start",
-                        gap: 4,
+                        gap: { xs: 4, md: 6 },
                     }}
                 >
                     {/* Left Column */}
                     <Box sx={{ flex: 1, maxWidth: { md: "45%" } }}>
                         <Typography
-                            variant="h3"
                             component="h2"
-                            sx={{ fontWeight: 600, mb: 2 }}
+                            sx={{
+                                ...titleStyle,
+                                mb: { xs: 2, md: 3 },
+                            }}
                         >
                             Ready to Work Together?
                         </Typography>
 
                         <Typography
-                            variant="body1"
                             sx={{
-                                fontSize: "1.1rem",
-                                color: "text.secondary",
-                                lineHeight: 1.6,
+                                ...paragraphStyle,
                             }}
                         >
                             Whether you're planning an S/4HANA transformation, need expert SAP
@@ -53,9 +70,12 @@ const SectionEight = () => {
                         }}
                     >
                         <Typography
-                            variant="h5"
                             component="p"
-                            sx={{ fontWeight: 500, mb: 3 }}
+                            sx={{
+                                ...titleStyle,
+                                fontSize: { xs: '18px', sm: '20px', md: '24px' },
+                                mb: { xs: 3, md: 4 },
+                            }}
                         >
                             Let's talk about your SAP needs.
                         </Typography>

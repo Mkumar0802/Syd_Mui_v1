@@ -60,11 +60,7 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
     if (!items.length) return null;
 
     return (
-        <Box sx={{ width: "100%", py: { xs: 4, md: 6 }, overflow: "hidden" }}>
-
-
-
-
+        <Box sx={{ width: "100%", overflow: "hidden" }}>
             {/* Slider Track */}
             <Box
                 ref={trackRef}
@@ -98,7 +94,7 @@ export default function TestimonialCarousel({ items = [], title = "Client Testim
             </Box>
 
             {/* Dots */}
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 1.3, mt: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", gap: 1.3 }}>
                 {items.map((_, idx) => {
                     const active = currentIndex === idx;
                     return (
