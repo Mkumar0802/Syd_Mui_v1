@@ -17,6 +17,11 @@ const Whoweare = lazy(() => import("./pages/WhoWeAre/Whoweare"));
 const SapPartnerEdge = lazy(() => import("./pages/SapPartnerEdge/SapPartnerEdge"));
 const Whatwedo = lazy(() => import("./pages/WhatWeDo/Whatwedo"));
 const SAPTechnicalSpecialiSation = lazy(() => import("./pages/WhatWeDo/SAPTechnicalSpecialiSation/SAPTechnicalSpecialiSation"));
+const SAPMODULESpecialisation = lazy(() => import("./pages/WhatWeDo/SAPMODULESpecialisation/SAPMODULESpecialisation"));
+const S4hanaFullStackServices = lazy(() => import("./pages/WhatWeDo/S/4HANAFULLSTACKSERVICES/S4hanaFullStackServices"));
+const ConsultingManagedServices = lazy(() => import("./pages/WhatWeDo/SYD_CONSULTING_MANAGED_SERVICES/Consulting_Manged_Services"));
+
+
 
 export default function App() {
   return (
@@ -40,9 +45,9 @@ export default function App() {
               {/* What we do */}
               <Route path="/what" element={<Whatwedo />} />
               <Route path="/sap-technical-specialisation" element={<SAPTechnicalSpecialiSation />} />
-              <Route path="/sap-module-specialisation" element={<PlaceholderPage title="SAP Module Specialisation" />} />
-              <Route path="/sap-s4hana-services" element={<PlaceholderPage title="SAP S/4HANA Full Stack Services" />} />
-              <Route path="/managed-services" element={<PlaceholderPage title="SYD Consulting Managed Services" />} />
+              <Route path="/sap-module-specialisation" element={<SAPMODULESpecialisation />} />
+              <Route path="/sap-s4hana-services" element={<S4hanaFullStackServices />} />
+              <Route path="/managed-services" element={<ConsultingManagedServices />} />
               <Route path="/resource-augmentation" element={<PlaceholderPage title="Resource Augmentation" />} />
 
               {/* Our Work */}

@@ -44,7 +44,7 @@ export default function AccordionItem({
         <Box sx={{ flex: 1, pr: 2 }}>
           {/* TITLE — EXACT TYPOGRAPHY */}
           <Typography
-            component="div"
+            component="h3"
             sx={{
               fontFamily: `"Microsoft JhengHei UI", sans-serif`,
               fontWeight: 700,

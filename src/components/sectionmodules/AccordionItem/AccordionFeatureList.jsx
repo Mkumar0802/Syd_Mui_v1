@@ -30,7 +30,23 @@ export default function AccordionFeatureList({ data }) {
           badgeLabel={item.badgeLabel}
           expanded={openId === item.id}
           onToggle={() => setOpenId((prev) => (prev === item.id ? null : item.id))}
-        />
+        >
+          {item.points && (
+            <Box component="ul" sx={{ pl: 3, m: 0, mt: 2 }}>
+              {item.points.map((point, index) => (
+                <Box component="li" key={index} sx={{ mb: 1 }}>
+                  <Box sx={{
+                    fontFamily: '"Segoe UI", sans-serif',
+                    fontSize: { xs: "15px", sm: "16px" },
+                    color: "#000"
+                  }}>
+                    {point}
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </AccordionItem>
       ))}
     </Box>
   );

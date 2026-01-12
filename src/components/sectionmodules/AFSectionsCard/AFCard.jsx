@@ -55,6 +55,7 @@ export default function AFCard({ image, title, description, sx = {} }) {
 
             {/* TITLE */}
             <Typography
+                component="h3"
                 sx={{
                     fontFamily: "Segoe UI, sans-serif",
                     fontWeight: 600,

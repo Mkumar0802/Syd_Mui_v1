@@ -95,6 +95,7 @@ export default function HeroWithDots({
             {titleLines.map((line, idx) => (
               <Typography
                 key={idx}
+                component={idx === 0 ? "h1" : "span"}
                 sx={{
                   color: "#FFFFFF",
                   fontFamily: `"Microsoft JhengHei UI", sans-serif`,
