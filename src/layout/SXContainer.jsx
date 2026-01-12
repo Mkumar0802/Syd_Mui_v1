@@ -55,6 +55,7 @@ export default function SXContainer({
     const renderContainer = () => (
         <Container
             maxWidth={containerMaxWidth}
+            
             disableGutters={disableGutters}
             className={className}
             sx={{
